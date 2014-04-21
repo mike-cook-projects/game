@@ -1,0 +1,16 @@
+<div id="{{ tile.data.id }}"
+     style="z-index: {{ tile.data.translated.z }}; left: {{ tile.data.translated.y }}px; top: {{ tile.data.translated.x }}px;"
+     class="tile {{ tile.data.type }}">
+  <div ng-click="tile.onClick($event)"
+       ng-mouseover="tile.onMouseover($event)"
+       ng-mouseout="tile.onMouseout($event)"
+       class="face top"></div>
+  <div ng-click="tile.onClick($event)"
+       ng-mouseover="tile.onMouseover($event)"
+       ng-mouseout="tile.onMouseout($event)"
+       class="face left thin_face"></div>
+  <div ng-click="tile.onClick($event)"
+       ng-mouseover="tile.onMouseover($event)"
+       ng-mouseout="tile.onMouseout($event)"
+       class="face right thin_face"></div>
+</div>

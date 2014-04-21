@@ -1,0 +1,51 @@
+{
+  "name": "dapper",
+  "version": "0.2.6",
+  "main": "./dapper.min.css",
+  "description": "all of our css styles",
+  "ignore": [
+    ".bowerrc",
+    ".git",
+    ".sass-cache",
+    ".gitignore",
+    "bower.json",
+    "build",
+    "dapper-dev.scss",
+    "dapper.scss",
+    "gulpfile.js",
+    "node_modules",
+    "package.json",
+    "README.md",
+    "Gemfile",
+    "Gemfile.lock",
+    "vendor",
+    "script",
+    "doc",
+    "base",
+    "images",
+    "layout",
+    "modules",
+    "properties",
+    "themes"
+  ],
+  "jakarta": {
+    "css": {
+      "dependencies": {
+        "bourbon": "~3.2.0-beta.2",
+        "neat": "1.5.0",
+        "normalize-css": "~3.0.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/generalthings/pkg-dapper",
+  "_release": "0.2.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.6",
+    "commit": "634eef626082a82fa378d49131dd42685987bff8"
+  },
+  "_source": "git://github.com/generalthings/pkg-dapper.git",
+  "_target": ">=0.2.6",
+  "_originalSource": "dapper",
+  "_direct": true
+}

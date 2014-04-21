@@ -1,0 +1,38 @@
+TEMP DOCS
+=========
+
+TABS
+====
+
+Todo
+
+
+SPINNER
+=======
+
+Spinner allows you to show or hide a spinner on a container depending.  This is controlled via the show-on attribute, and should be a boolean value or return from a function.
+
+Usage
+-----
+
+To use the spinner, simply apply the gp-spinner directive to your block element.  You can specify the css class used by the background element by assigning to the background attribute.  You can specify the css class used by the spinner by assigning to the spinner attribute.  If not specified, the default classes will be used for the background and spinner.
+
+When the spinner appears, all inputs will have the disabled class attached to them (TODO: Use real class).  The will also have the disabled attribute applied to them to prevent interaction.
+
+Attributes
+----------
+
+ - gp-spinner: The main directive attribute that will create a spinner object inside of your element
+ - background: The css background class to use for the full element background
+ - spinner: The css class to use for the spinner (you can pass multiple space-separated classes)
+
+Examples
+-------
+
+<div gp-spinner show-on="test.show">
+  Your content
+</div>
+
+<div gp-spinner show-on="test.show" background="my-background-class" spinner="my-spinner-class my-speed">
+  Your content
+</div>

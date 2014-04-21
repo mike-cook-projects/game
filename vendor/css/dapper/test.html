@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test Page for Dapper, Yo!</title>
+    <meta name="description" content="Getting GoPro all spiffy">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="dapper.min.css">
+
+  </head>
+  <body ng-app>
+    <!-- Intro START -->
+    <section class="str--par str--75h" style="background-image: url(images/dapper-doge.jpg); background-position: 50% 40%">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h1>Welcome to Dapper.</h1>
+
+            <!-- Show off visibility/accessibility helpers, seekritly -->
+            <p>You seem to be browsing on a <span class="hid--t hid--l hid--d">mobile device</span><span class="hid--p hid--l hid--d">tablet</span><span class="hid--t hid--p hid--d">laptop</span><span class="hid--t hid--l hid--p">desktop</span> today. Wow. Much Excite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Intro END -->
+
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Variables</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div ng-init="variables = [
+      { name: '$grid-gutter-width', value: '2.5%; // ~30px at full width' },
+      { name: '$grid-columns', value: '12;' },
+      { name: '$screen-palm-min', value: '0;' },
+      { name: '$screen-palm-max', value: '320px;' },
+      { name: '$screen-tablet-min', value: '768px;' },
+      { name: '$screen-lap-min', value: '1024px;' },
+      { name: '$screen-desk-min', value: '1200px;' },
+      { name: '$screen-desk-max', value: '1200px;' },
+      { name: '$sans-serif', value: 'Arial, sans-serif;' },
+      { name: '$serif', value: '$georgia;' },
+      { name: '$base-font-family', value: '$sans-serif;' },
+      { name: '$pfdin-font-family', value: 'PFDinTextPro, $base-font-family;' },
+      { name: '$michroma-font-family', value: 'Michroma, $base-font-family;' },
+      { name: '$header-font-family', value: '$pfdin-font-family;' },
+      { name: '$blue', value: '#009fdf; // GoPro GoPro GoPro! Blue.' },
+      { name: '$green', value: '#00cc00;' },
+      { name: '$red', value: '#ff0033;' },
+      { name: '$black', value: '#000;' },
+      { name: '$darker-gray', value: 'lighten($black, 20%); // #333' },
+      { name: '$dark-gray', value: 'lighten($black, 40%); // #666' },
+      { name: '$gray', value: 'lighten($black, 60%); // #999' },
+      { name: '$light-gray', value: 'lighten($black, 80%); // #ccc' },
+      { name: '$lighter-gray', value: 'lighten($black, 93%); // #eee' },
+      { name: '$white', value: '#fff;' },
+      { name: '$holiday-red', value: '#ba0c10;' },
+      { name: '$contest-yellow', value: '#ffcd2f;' }
+    ]">
+
+    <section class="grid-wrap mb40">
+      <div class="grid mb10">
+        <div class="col2">
+          <h5>Variable</h5>
+        </div>
+        <div class="col10">
+          <h5>Value</h5>
+        </div>
+      </div>
+
+      <div class="grid" ng-repeat="variable in variables">
+        <div class="col2">
+          <h6>{{variable.name}}</h6>
+        </div>
+        <div class="col10">
+          <code>{{variable.value}}</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Atomic Classes</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div ng-init="classes = [
+      { name: '.bxsh-n', attribute: 'box-shadow: none;'},
+      { name: '.bxsh-1', attribute: 'box-shadow: 0px 0px 1px rgba($black 0.5);'},
+      { name: '.bxsh-2', attribute: 'box-shadow: 0px 0px 2px rgba($black 0.5);'},
+      { name: '.bxsh-3', attribute: 'box-shadow: 0px 0px 3px rgba($black 0.5);'},
+      { name: '.bxsh-4', attribute: 'box-shadow: 0px 0px 4px rgba($black 0.5);'},
+      { name: '.bxsh-5', attribute: 'box-shadow: 0px 0px 5px rgba($black 0.5);'},
+      { name: '.bxsh-6', attribute: 'box-shadow: 0px 0px 6px rgba($black 0.5);'},
+      { name: '.bxsh-7', attribute: 'box-shadow: 0px 0px 7px rgba($black 0.5);'},
+      { name: '.bxsh-8', attribute: 'box-shadow: 0px 0px 8px rgba($black 0.5);'},
+      { name: '.bxsh-9', attribute: 'box-shadow: 0px 0px 9px rgba($black 0.5);'},
+      { name: '.bxsh-10', attribute: 'box-shadow: 0px 0px 10px rgba($black 0.5);'},
+      { name: '.bxsh-15', attribute: 'box-shadow: 0px 0px 15px rgba($black 0.5);'},
+      { name: '.bxshin-1', attribute: 'box-shadow: inset 0px 0px 1px rgba($black 0.5);'},
+      { name: '.bxshin-2', attribute: 'box-shadow: inset 0px 0px 2px rgba($black 0.5);'},
+      { name: '.bxshin-3', attribute: 'box-shadow: inset 0px 0px 3px rgba($black 0.5);'},
+      { name: '.bxshin-4', attribute: 'box-shadow: inset 0px 0px 4px rgba($black 0.5);'},
+      { name: '.bxshin-5', attribute: 'box-shadow: inset 0px 0px 5px rgba($black 0.5);'},
+      { name: '.bxshin-6', attribute: 'box-shadow: inset 0px 0px 6px rgba($black 0.5);'},
+      { name: '.bxshin-7', attribute: 'box-shadow: inset 0px 0px 7px rgba($black 0.5);'},
+      { name: '.bxshin-8', attribute: 'box-shadow: inset 0px 0px 8px rgba($black 0.5);'},
+      { name: '.bxshin-9', attribute: 'box-shadow: inset 0px 0px 9px rgba($black 0.5);'},
+      { name: '.bxshin-10', attribute: 'box-shadow: inset 0px 0px 10px rgba($black 0.5);'},
+      { name: '.bxshin-15', attribute: 'box-shadow: inset 0px 0px 15px rgba($black 0.5);'},
+      { name: '.bgc-wht', attribute: 'background-color: white;'},
+      { name: '.h-bgc-wht', attribute: 'background-color: white; (on hover)'},
+      { name: '.bgc-blu', attribute: 'background-color: #009fdf;'},
+      { name: '.h-bgc-blu', attribute: 'background-color: #009fdf; (on hover)'},
+      { name: '.bgc-blk', attribute: 'background-color: black;'},
+      { name: '.h-bgc-blk', attribute: 'background-color: black; (on hover)'},
+      { name: '.bgc-grn', attribute: 'background-color: #00cc00;'},
+      { name: '.h-bgc-grn', attribute: 'background-color: #00cc00; (on hover)'},
+      { name: '.bgc-red', attribute: 'background-color: #ff0033;'},
+      { name: '.h-bgc-red', attribute: 'background-color: #ff0033; (on hover)'},
+      { name: '.bgc-gry-dkr', attribute: 'background-color: #333333;'},
+      { name: '.h-bgc-gry-dkr', attribute: 'background-color: #333333; (on hover)'},
+      { name: '.bgc-gry-dk', attribute: 'background-color: #666666;'},
+      { name: '.h-bgc-gry-dk', attribute: 'background-color: #666666; (on hover)'},
+      { name: '.bgc-gry', attribute: 'background-color: #999999;'},
+      { name: '.h-bgc-gry', attribute: 'background-color: #999999; (on hover)'},
+      { name: '.bgc-gry-lt', attribute: 'background-color: #cccccc;'},
+      { name: '.h-bgc-gry-lt', attribute: 'background-color: #cccccc; (on hover)'},
+      { name: '.bgc-gry-ltr', attribute: 'background-color: #ededed;'},
+      { name: '.h-bgc-gry-ltr', attribute: 'background-color: #ededed; (on hover)'},
+      { name: '.bgc-holiday-red', attribute: 'background-color: #ba0c10;'},
+      { name: '.h-bgc-holiday-red', attribute: 'background-color: #ba0c10; (on hover)'},
+      { name: '.bgc-contest-ylw', attribute: 'background-color: #ffcd2f;'},
+      { name: '.h-bgc-contest-ylw', attribute: 'background-color: #ffcd2f; (on hover)'},
+      { name: '.bgi-n', attribute: 'background-image: none;'},
+      { name: '.bgr-r', attribute: 'background-repeat: repeat;'},
+      { name: '.bgr-x', attribute: 'background-repeat: repeat-x;'},
+      { name: '.bgr-y', attribute: 'background-repeat: repeat-y;'},
+      { name: '.bgr-n', attribute: 'background-repeat: no-repeat;'},
+      { name: '.bga-f', attribute: 'background-attachment: fixed;'},
+      { name: '.bga-s', attribute: 'background-attachment: scroll;'},
+      { name: '.bgbk-bb', attribute: 'background-break: bounding-box;'},
+      { name: '.bgbk-eb', attribute: 'background-break: each-box;'},
+      { name: '.bgbk-c', attribute: 'background-break: continuous;'},
+      { name: '.bgo-pb', attribute: 'background-origin: padding-box;'},
+      { name: '.bgo-bb', attribute: 'background-origin: border-box;'},
+      { name: '.bgo-cb', attribute: 'background-origin: content-box;'},
+      { name: '.bgp-0', attribute: 'background-position: 0% 0%;'},
+      { name: '.bgp-10', attribute: 'background-position: 10% 10%;'},
+      { name: '.bgp-20', attribute: 'background-position: 20% 20%;'},
+      { name: '.bgp-30', attribute: 'background-position: 30% 30%;'},
+      { name: '.bgp-40', attribute: 'background-position: 40% 40%;'},
+      { name: '.bgp-50', attribute: 'background-position: 50% 50%;'},
+      { name: '.bgp-60', attribute: 'background-position: 60% 60%;'},
+      { name: '.bgp-70', attribute: 'background-position: 70% 70%;'},
+      { name: '.bgp-80', attribute: 'background-position: 80% 80%;'},
+      { name: '.bgp-90', attribute: 'background-position: 90% 90%;'},
+      { name: '.bgp-100', attribute: 'background-position: 100% 100%;'},
+      { name: '.bgpx-10', attribute: 'background-position-x: 10%;'},
+      { name: '.bgpx-20', attribute: 'background-position-x: 20%;'},
+      { name: '.bgpx-30', attribute: 'background-position-x: 30%;'},
+      { name: '.bgpx-40', attribute: 'background-position-x: 40%;'},
+      { name: '.bgpx-50', attribute: 'background-position-x: 50%;'},
+      { name: '.bgpx-60', attribute: 'background-position-x: 60%;'},
+      { name: '.bgpx-70', attribute: 'background-position-x: 70%;'},
+      { name: '.bgpx-80', attribute: 'background-position-x: 80%;'},
+      { name: '.bgpx-90', attribute: 'background-position-x: 90%;'},
+      { name: '.bgpx-100', attribute: 'background-position-x: 100%;'},
+      { name: '.bgpy-10', attribute: 'background-position-y: 10%;'},
+      { name: '.bgpy-20', attribute: 'background-position-y: 20%;'},
+      { name: '.bgpy-30', attribute: 'background-position-y: 30%;'},
+      { name: '.bgpy-40', attribute: 'background-position-y: 40%;'},
+      { name: '.bgpy-50', attribute: 'background-position-y: 50%;'},
+      { name: '.bgpy-60', attribute: 'background-position-y: 60%;'},
+      { name: '.bgpy-70', attribute: 'background-position-y: 70%;'},
+      { name: '.bgpy-80', attribute: 'background-position-y: 80%;'},
+      { name: '.bgpy-90', attribute: 'background-position-y: 90%;'},
+      { name: '.bgpy-100', attribute: 'background-position-y: 100%;'},
+      { name: '.bgp-n10', attribute: 'background-position: -10% -10%;'},
+      { name: '.bgp-n20', attribute: 'background-position: -20% -20%;'},
+      { name: '.bgp-n30', attribute: 'background-position: -30% -30%;'},
+      { name: '.bgp-n40', attribute: 'background-position: -40% -40%;'},
+      { name: '.bgp-n50', attribute: 'background-position: -50% -50%;'},
+      { name: '.bgp-n60', attribute: 'background-position: -60% -60%;'},
+      { name: '.bgp-n70', attribute: 'background-position: -70% -70%;'},
+      { name: '.bgp-n80', attribute: 'background-position: -80% -80%;'},
+      { name: '.bgp-n90', attribute: 'background-position: -90% -90%;'},
+      { name: '.bgp-n100', attribute: 'background-position: -100% -100%;'},
+      { name: '.bgpx-n10', attribute: 'background-position-x: -10%;'},
+      { name: '.bgpx-n20', attribute: 'background-position-x: -20%;'},
+      { name: '.bgpx-n30', attribute: 'background-position-x: -30%;'},
+      { name: '.bgpx-n40', attribute: 'background-position-x: -40%;'},
+      { name: '.bgpx-n50', attribute: 'background-position-x: -50%;'},
+      { name: '.bgpx-n60', attribute: 'background-position-x: -60%;'},
+      { name: '.bgpx-n70', attribute: 'background-position-x: -70%;'},
+      { name: '.bgpx-n80', attribute: 'background-position-x: -80%;'},
+      { name: '.bgpx-n90', attribute: 'background-position-x: -90%;'},
+      { name: '.bgpx-n100', attribute: 'background-position-x: -100%;'},
+      { name: '.bgpy-n10', attribute: 'background-position-y: -10%;'},
+      { name: '.bgpy-n20', attribute: 'background-position-y: -20%;'},
+      { name: '.bgpy-n30', attribute: 'background-position-y: -30%;'},
+      { name: '.bgpy-n40', attribute: 'background-position-y: -40%;'},
+      { name: '.bgpy-n50', attribute: 'background-position-y: -50%;'},
+      { name: '.bgpy-n60', attribute: 'background-position-y: -60%;'},
+      { name: '.bgpy-n70', attribute: 'background-position-y: -70%;'},
+      { name: '.bgpy-n80', attribute: 'background-position-y: -80%;'},
+      { name: '.bgpy-n90', attribute: 'background-position-y: -90%;'},
+      { name: '.bgpy-n100', attribute: 'background-position-y: -100%;'},
+      { name: '.bgz-a', attribute: 'background-size: auto;'},
+      { name: '.bgz-ct', attribute: 'background-size: contain;'},
+      { name: '.bgz-cv', attribute: 'background-size: cover;'},
+      { name: '.cl-n', attribute: 'clear: none;'},
+      { name: '.cl-l', attribute: 'clear: left;'},
+      { name: '.cl-r', attribute: 'clear: right;'},
+      { name: '.cl-b', attribute: 'clear: both;'},
+      { name: '.cur-a', attribute: 'cursor: auto;'},
+      { name: '.cur-d', attribute: 'cursor: default;'},
+      { name: '.cur-c', attribute: 'cursor: crosshair;'},
+      { name: '.cur-ha', attribute: 'cursor: hand;'},
+      { name: '.cur-he', attribute: 'cursor: help;'},
+      { name: '.cur-m', attribute: 'cursor: move;'},
+      { name: '.cur-p', attribute: 'cursor: pointer;'},
+      { name: '.cur-t', attribute: 'cursor: text;'},
+      { name: '.c-wht', attribute: 'color: white;'},
+      { name: '.c-blu', attribute: 'color: #009fdf;'},
+      { name: '.c-blk', attribute: 'color: black;'},
+      { name: '.c-grn', attribute: 'color: #00cc00;'},
+      { name: '.c-red', attribute: 'color: #ff0033;'},
+      { name: '.c-gry-dkr', attribute: 'color: #333333;'},
+      { name: '.c-gry-dk', attribute: 'color: #666666;'},
+      { name: '.c-gry', attribute: 'color: #999999;'},
+      { name: '.c-gry-lt', attribute: 'color: #cccccc;'},
+      { name: '.c-gry-ltr', attribute: 'color: #ededed;'},
+      { name: '.c-holiday-red', attribute: 'color: #ba0c10;'},
+      { name: '.c-contest-ylw', attribute: 'color: #ffcd2f;'},
+      { name: '.h-c-wht', attribute: 'color: white; (on hover)'},
+      { name: '.h-c-blu', attribute: 'color: #009fdf; (on hover)'},
+      { name: '.h-c-blk', attribute: 'color: black; (on hover)'},
+      { name: '.h-c-grn', attribute: 'color: #00cc00; (on hover)'},
+      { name: '.h-c-red', attribute: 'color: #ff0033; (on hover)'},
+      { name: '.h-c-gry-dkr', attribute: 'color: #333333; (on hover)'},
+      { name: '.h-c-gry-dk', attribute: 'color: #666666; (on hover)'},
+      { name: '.h-c-gry', attribute: 'color: #999999; (on hover)'},
+      { name: '.h-c-gry-lt', attribute: 'color: #cccccc; (on hover)'},
+      { name: '.h-c-gry-ltr', attribute: 'color: #ededed; (on hover)'},
+      { name: '.h-c-holiday-red', attribute: 'color: #ba0c10; (on hover)'},
+      { name: '.h-c-contest-ylw', attribute: 'color: #ffcd2f; (on hover)'},
+      { name: '.ff-arial, .ff-base', attribute: 'font-family: Arial, sans-serif;' },
+      { name: '.ff-pfdin', attribute: 'font-family: PFDinTextPro, Arial, sans-serif;' },
+      { name: '.ff-michroma', attribute: 'font-family: Michroma, Arial, sans-serif;' },
+      { name: '.fw-lt', attribute: 'font-weight: 100;' },
+      { name: '.fw-reg', attribute: 'font-weight: 400;' },
+      { name: '.fw-bld', attribute: 'font-weight: 700;' },
+      { name: '.fz-10, .fz-fine-print', attribute: 'font-size: 0.625rem;' },
+      { name: '.fz-12', attribute: 'font-size: 0.75rem;' },
+      { name: '.fz-14', attribute: 'font-size: 0.875rem;' },
+      { name: '.fz-base, .fz-16', attribute: 'font-size: 1rem;' },
+      { name: '.fz-18', attribute: 'font-size: 1.125rem;' },
+      { name: '.fz-20', attribute: 'font-size: 1.25rem;' },
+      { name: '.fz-22', attribute: 'font-size: 1.375rem;' },
+      { name: '.fz-24', attribute: 'font-size: 1.5rem;' },
+      { name: '.fz-26', attribute: 'font-size: 1.625rem;' },
+      { name: '.fz-28', attribute: 'font-size: 1.75rem;' },
+      { name: '.fz-30', attribute: 'font-size: 1.875rem;' },
+      { name: '.fz-32', attribute: 'font-size: 2rem;' },
+      { name: '.fz-34', attribute: 'font-size: 2.125rem;' },
+      { name: '.fz-36', attribute: 'font-size: 2.25rem;' },
+      { name: '.fz-38', attribute: 'font-size: 2.375rem;' },
+      { name: '.fz-40', attribute: 'font-size: 2.5rem;' },
+      { name: '.fz-42', attribute: 'font-size: 2.625rem;' },
+      { name: '.fz-46', attribute: 'font-size: 2.875rem;' },
+      { name: '.fz-48', attribute: 'font-size: 3rem;' },
+      { name: '.fz-50', attribute: 'font-size: 3.125rem;' },
+      { name: '.fz-52', attribute: 'font-size: 3.25rem;' },
+      { name: '.fz-54', attribute: 'font-size: 3.375rem;' },
+      { name: '.lh-8', attribute: 'line-height: 0.5rem;' },
+      { name: '.lh-12', attribute: 'line-height: 0.75rem;' },
+      { name: '.lh-16', attribute: 'line-height: 1rem;' },
+      { name: '.lh-20', attribute: 'line-height: 1.25rem;' },
+      { name: '.lh-base, .lh-24', attribute: 'line-height: 1.5rem;' },
+      { name: '.lh-28', attribute: 'line-height: 1.75rem;' },
+      { name: '.lh-32', attribute: 'line-height: 2rem;' },
+      { name: '.lh-36', attribute: 'line-height: 2.25rem;' },
+      { name: '.lh-40', attribute: 'line-height: 2.5rem;' },
+      { name: '.lh-44', attribute: 'line-height: 2.75rem;' },
+      { name: '.lh-48', attribute: 'line-height: 3rem;' },
+      { name: '.lh-52', attribute: 'line-height: 3.25rem;' },
+      { name: '.lh-56', attribute: 'line-height: 3.5rem;' },
+      { name: '.lh-60', attribute: 'line-height: 3.75rem;' },
+      { name: '.lh-64', attribute: 'line-height: 4rem;' },
+      { name: '.ls-neg1', attribute: 'letter-spacing: -0.0625rem;' },
+      { name: '.ls-base', attribute: 'letter-spacing: 0;' },
+      { name: '.ls-pt5', attribute: 'letter-spacing: 0.03125rem;' },
+      { name: '.ls-1', attribute: 'letter-spacing: 0.0625rem;' },
+      { name: '.tt-c', attribute: 'text-transform: capitalize;' },
+      { name: '.tt-uc', attribute: 'text-transform: uppercase;' },
+      { name: '.tt-lc', attribute: 'text-transform: lowercase;' },
+      { name: '.tt-n', attribute: 'text-transform: none;' },
+      { name: '.ta-l', attribute: 'text-align: left;' },
+      { name: '.ta-c', attribute: 'text-align: center;' },
+      { name: '.ta-r', attribute: 'text-align: right;' },
+      { name: '.ta-j', attribute: 'text-align: justify;' },
+      { name: '.td-lt', attribute: 'text-decoration: line-through;' },
+      { name: '.td-u', attribute: 'text-decoration: underline;' },
+      { name: '.td-n', attribute: 'text-decoration: none;' },
+      { name: '.tsh-n', attribute: 'text-shadow: none;'},
+      { name: '.tsh-1', attribute: 'text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5)'},
+      { name: '.tsh-2', attribute: 'text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5)'},
+      { name: '.tsh-3', attribute: 'text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5)'},
+      { name: '.tsh-4', attribute: 'text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5)'},
+      { name: '.tsh-5', attribute: 'text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)'},
+      { name: '.tsh-10', attribute: 'text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75)'},
+      { name: '.tsh-20', attribute: 'text-shadow: 0px 0px 20px rgba(0, 0, 0, 1)'},
+      { name: '.ww-bw', attribute: 'word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto;' },
+      { name: '.ww-n', attribute: 'word-wrap: normal;' },
+      { name: '.ws-nw', attribute: 'white-space: nowrap;' },
+      { name: '.ws-p', attribute: 'white-space: pre;' },
+      { name: '.ws-pw', attribute: 'white-space: pre-wrap; -moz-white-space: pre-wrap;' },
+      { name: '.ws-pl', attribute: 'white-space: pre-line;' },
+      { name: '.ws-n', attribute: 'white-space: normal;' },
+      { name: '.ov-hid', attribute: 'overflow: hidden;' },
+      { name: '.ov-vis', attribute: 'overflow: visible;' },
+      { name: '.ov-auto', attribute: 'overflow: auto;' },
+      { name: '.ov-scr', attribute: 'overflow: scroll;' },
+      { name: '.ovx-hid', attribute: 'overflow-x: hidden;' },
+      { name: '.ovx-vis', attribute: 'overflow-x: visible;' },
+      { name: '.ovx-auto', attribute: 'overflow-x: auto;' },
+      { name: '.ovx-scr', attribute: 'overflow-x: scroll;' },
+      { name: '.ovy-hid', attribute: 'overflow-y: hidden;' },
+      { name: '.ovy-vis', attribute: 'overflow-y: visible;' },
+      { name: '.ovy-auto', attribute: 'overflow-y: auto;' },
+      { name: '.ovy-scr', attribute: 'overflow-y: scroll;' },
+      { name: '.ma*', attribute: 'margin: auto;'},
+      { name: '.mxa*', attribute: 'margin-right: auto; margin-left: auto;'},
+      { name: '.mya*', attribute: 'margin-top: auto; margin-bottom: auto;'},
+      { name: '.mta*', attribute: 'margin-top: auto;'},
+      { name: '.mra*', attribute: 'margin-right: auto;'},
+      { name: '.mba*', attribute: 'margin-bottom: auto;'},
+      { name: '.mla*', attribute: 'margin-left: auto;'},
+      { name: '.m0*', attribute: 'margin: 0px;'},
+      { name: '.mx0*', attribute: 'margin-right: 0px; margin-left: 0px;'},
+      { name: '.my0*', attribute: 'margin-top: 0px; margin-bottom: 0px;'},
+      { name: '.mt0*', attribute: 'margin-top: 0px;'},
+      { name: '.mr0*', attribute: 'margin-right: 0px;'},
+      { name: '.mb0*', attribute: 'margin-bottom: 0px;'},
+      { name: '.ml0*', attribute: 'margin-left: 0px;'},
+      { name: '.m5*', attribute: 'margin: 5px;'},
+      { name: '.mx5*', attribute: 'margin-right: 5px; margin-left: 5px;'},
+      { name: '.my5*', attribute: 'margin-top: 5px; margin-bottom: 5px;'},
+      { name: '.mt5*', attribute: 'margin-top: 5px;'},
+      { name: '.mr5*', attribute: 'margin-right: 5px;'},
+      { name: '.mb5*', attribute: 'margin-bottom: 5px;'},
+      { name: '.ml5*', attribute: 'margin-left: 5px;'},
+      { name: '.m10*', attribute: 'margin: 10px;'},
+      { name: '.mx10*', attribute: 'margin-right: 10px; margin-left: 10px;'},
+      { name: '.my10*', attribute: 'margin-top: 10px; margin-bottom: 10px;'},
+      { name: '.mt10*', attribute: 'margin-top: 10px;'},
+      { name: '.mr10*', attribute: 'margin-right: 10px;'},
+      { name: '.mb10*', attribute: 'margin-bottom: 10px;'},
+      { name: '.ml10*', attribute: 'margin-left: 10px;'},
+      { name: '.m20*', attribute: 'margin: 20px;'},
+      { name: '.mx20*', attribute: 'margin-right: 20px; margin-left: 20px;'},
+      { name: '.my20*', attribute: 'margin-top: 20px; margin-bottom: 20px;'},
+      { name: '.mt20*', attribute: 'margin-top: 20px;'},
+      { name: '.mr20*', attribute: 'margin-right: 20px;'},
+      { name: '.mb20*', attribute: 'margin-bottom: 20px;'},
+      { name: '.ml20*', attribute: 'margin-left: 20px;'},
+      { name: '.m30*', attribute: 'margin: 30px;'},
+      { name: '.mx30*', attribute: 'margin-right: 30px; margin-left: 30px;'},
+      { name: '.my30*', attribute: 'margin-top: 30px; margin-bottom: 30px;'},
+      { name: '.mt30*', attribute: 'margin-top: 30px;'},
+      { name: '.mr30*', attribute: 'margin-right: 30px;'},
+      { name: '.mb30*', attribute: 'margin-bottom: 30px;'},
+      { name: '.ml30*', attribute: 'margin-left: 30px;'},
+      { name: '.m40*', attribute: 'margin: 40px;'},
+      { name: '.mx40*', attribute: 'margin-right: 40px; margin-left: 40px;'},
+      { name: '.my40*', attribute: 'margin-top: 40px; margin-bottom: 40px;'},
+      { name: '.mt40*', attribute: 'margin-top: 40px;'},
+      { name: '.mr40*', attribute: 'margin-right: 40px;'},
+      { name: '.mb40*', attribute: 'margin-bottom: 40px;'},
+      { name: '.ml40*', attribute: 'margin-left: 40px;'},
+      { name: '.m50*', attribute: 'margin: 50px;'},
+      { name: '.mx50*', attribute: 'margin-right: 50px; margin-left: 50px;'},
+      { name: '.my50*', attribute: 'margin-top: 50px; margin-bottom: 50px;'},
+      { name: '.mt50*', attribute: 'margin-top: 50px;'},
+      { name: '.mr50*', attribute: 'margin-right: 50px;'},
+      { name: '.mb50*', attribute: 'margin-bottom: 50px;'},
+      { name: '.ml50*', attribute: 'margin-left: 50px;'},
+      { name: '.m60*', attribute: 'margin: 60px;'},
+      { name: '.mx60*', attribute: 'margin-right: 60px; margin-left: 60px;'},
+      { name: '.my60*', attribute: 'margin-top: 60px; margin-bottom: 60px;'},
+      { name: '.mt60*', attribute: 'margin-top: 60px;'},
+      { name: '.mr60*', attribute: 'margin-right: 60px;'},
+      { name: '.mb60*', attribute: 'margin-bottom: 60px;'},
+      { name: '.ml60*', attribute: 'margin-left: 60px;'},
+      { name: '.p0*', attribute: 'padding: 0px;'},
+      { name: '.op-10', attribute: 'opacity: 0.1;'},
+      { name: '.op-20', attribute: 'opacity: 0.2;'},
+      { name: '.op-30', attribute: 'opacity: 0.3;'},
+      { name: '.op-40', attribute: 'opacity: 0.4;'},
+      { name: '.op-50', attribute: 'opacity: 0.5;'},
+      { name: '.op-60', attribute: 'opacity: 0.6;'},
+      { name: '.op-70', attribute: 'opacity: 0.7;'},
+      { name: '.op-80', attribute: 'opacity: 0.8;'},
+      { name: '.op-90', attribute: 'opacity: 0.9;'},
+      { name: '.px0*', attribute: 'padding-right: 0px;  padding-left: 0px;'},
+      { name: '.py0*', attribute: 'padding-top: 0px;  padding-bottom: 0px;'},
+      { name: '.pt0*', attribute: 'padding-top: 0px;'},
+      { name: '.pr0*', attribute: 'padding-right: 0px;'},
+      { name: '.pb0*', attribute: 'padding-bottom: 0px;'},
+      { name: '.pl0*', attribute: 'padding-left: 0px;'},
+      { name: '.p5*', attribute: 'padding: 5px;'},
+      { name: '.px5*', attribute: 'padding-right: 5px;  padding-left: 5px;'},
+      { name: '.py5*', attribute: 'padding-top: 5px;  padding-bottom: 5px;'},
+      { name: '.pt5*', attribute: 'padding-top: 5px;'},
+      { name: '.pr5*', attribute: 'padding-right: 5px;'},
+      { name: '.pb5*', attribute: 'padding-bottom: 5px;'},
+      { name: '.pl5*', attribute: 'padding-left: 5px;'},
+      { name: '.p10*', attribute: 'padding: 10px;'},
+      { name: '.px10*', attribute: 'padding-right: 10px;  padding-left: 10px;'},
+      { name: '.py10*', attribute: 'padding-top: 10px;  padding-bottom: 10px;'},
+      { name: '.pt10*', attribute: 'padding-top: 10px;'},
+      { name: '.pr10*', attribute: 'padding-right: 10px;'},
+      { name: '.pb10*', attribute: 'padding-bottom: 10px;'},
+      { name: '.pl10*', attribute: 'padding-left: 10px;'},
+      { name: '.p20*', attribute: 'padding: 20px;'},
+      { name: '.px20*', attribute: 'padding-right: 20px;  padding-left: 20px;'},
+      { name: '.py20*', attribute: 'padding-top: 20px;  padding-bottom: 20px;'},
+      { name: '.pt20*', attribute: 'padding-top: 20px;'},
+      { name: '.pr20*', attribute: 'padding-right: 20px;'},
+      { name: '.pb20*', attribute: 'padding-bottom: 20px;'},
+      { name: '.pl20*', attribute: 'padding-left: 20px;'},
+      { name: '.p30*', attribute: 'padding: 30px;'},
+      { name: '.px30*', attribute: 'padding-right: 30px;  padding-left: 30px;'},
+      { name: '.py30*', attribute: 'padding-top: 30px;  padding-bottom: 30px;'},
+      { name: '.pt30*', attribute: 'padding-top: 30px;'},
+      { name: '.pr30*', attribute: 'padding-right: 30px;'},
+      { name: '.pb30*', attribute: 'padding-bottom: 30px;'},
+      { name: '.pl30*', attribute: 'padding-left: 30px;'},
+      { name: '.p40*', attribute: 'padding: 40px;'},
+      { name: '.px40*', attribute: 'padding-right: 40px;  padding-left: 40px;'},
+      { name: '.py40*', attribute: 'padding-top: 40px;  padding-bottom: 40px;'},
+      { name: '.pt40*', attribute: 'padding-top: 40px;'},
+      { name: '.pr40*', attribute: 'padding-right: 40px;'},
+      { name: '.pb40*', attribute: 'padding-bottom: 40px;'},
+      { name: '.pl40*', attribute: 'padding-left: 40px;'},
+      { name: '.p50*', attribute: 'padding: 50px;'},
+      { name: '.px50*', attribute: 'padding-right: 50px;  padding-left: 50px;'},
+      { name: '.py50*', attribute: 'padding-top: 50px;  padding-bottom: 50px;'},
+      { name: '.pt50*', attribute: 'padding-top: 50px;'},
+      { name: '.pr50*', attribute: 'padding-right: 50px;'},
+      { name: '.pb50*', attribute: 'padding-bottom: 50px;'},
+      { name: '.pl50*', attribute: 'padding-left: 50px;'},
+      { name: '.p60*', attribute: 'padding: 60px;'},
+      { name: '.px60*', attribute: 'padding-right: 60px;  padding-left: 60px;'},
+      { name: '.py60*', attribute: 'padding-top: 60px;  padding-bottom: 60px;'},
+      { name: '.pt60*', attribute: 'padding-top: 60px;'},
+      { name: '.pr60*', attribute: 'padding-right: 60px;'},
+      { name: '.pb60*', attribute: 'padding-bottom: 60px;'},
+      { name: '.pl60*', attribute: 'padding-left: 60px;'},
+      { name: '.fl-l', attribute: 'float: left;'},
+      { name: '.fl-r', attribute: 'float: right;'},
+      { name: '.fl-n', attribute: 'float: none;'},
+      { name: '.lis-n', attribute: 'list-style: none;'},
+      { name: '.lisp-i', attribute: 'list-style-position: inside;'},
+      { name: '.lisp-o', attribute: 'list-style-position: outside;'},
+      { name: '.list-n', attribute: 'list-style-type: none;'},
+      { name: '.list-d', attribute: 'list-style-type: disc;'},
+      { name: '.list-c', attribute: 'list-style-type: circle;'},
+      { name: '.list-s', attribute: 'list-style-type: square;'},
+      { name: '.list-dc', attribute: 'list-style-type: decimal;'},
+      { name: '.list-dclz', attribute: 'list-style-type: decimal-leading-zero;'},
+      { name: '.list-lr', attribute: 'list-style-type: lower-roman;'},
+      { name: '.list-ur', attribute: 'list-style-type: upper-roman;'},
+      { name: '.bdt-wht', attribute: 'border-top: 1px solid white;' },
+      { name: '.h-bdt-wht', attribute: 'border-top: 1px solid white; (on hover)' },
+      { name: '.bdt-blu', attribute: 'border-top: 1px solid #009fdf;' },
+      { name: '.h-bdt-blu', attribute: 'border-top: 1px solid #009fdf; (on hover)' },
+      { name: '.bdt-blk', attribute: 'border-top: 1px solid black;' },
+      { name: '.h-bdt-blk', attribute: 'border-top: 1px solid black; (on hover)' },
+      { name: '.bdt-grn', attribute: 'border-top: 1px solid #00cc00;' },
+      { name: '.h-bdt-grn', attribute: 'border-top: 1px solid #00cc00; (on hover)' },
+      { name: '.bdt-red', attribute: 'border-top: 1px solid #ff0033;' },
+      { name: '.h-bdt-red', attribute: 'border-top: 1px solid #ff0033; (on hover)' },
+      { name: '.bdt-gry-dkr', attribute: 'border-top: 1px solid #333333;' },
+      { name: '.h-bdt-gry-dkr', attribute: 'border-top: 1px solid #333333; (on hover)' },
+      { name: '.bdt-gry-dk', attribute: 'border-top: 1px solid #666666;' },
+      { name: '.h-bdt-gry-dk', attribute: 'border-top: 1px solid #666666; (on hover)' },
+      { name: '.bdt-gry', attribute: 'border-top: 1px solid #999999;' },
+      { name: '.h-bdt-gry', attribute: 'border-top: 1px solid #999999; (on hover)' },
+      { name: '.bdt-gry-lt', attribute: 'border-top: 1px solid #cccccc;' },
+      { name: '.h-bdt-gry-lt', attribute: 'border-top: 1px solid #cccccc; (on hover)' },
+      { name: '.bdt-gry-ltr', attribute: 'border-top: 1px solid #ededed;' },
+      { name: '.h-bdt-gry-ltr', attribute: 'border-top: 1px solid #ededed; (on hover)' },
+      { name: '.bdr-wht', attribute: 'border-right: 1px solid white;' },
+      { name: '.h-bdr-wht', attribute: 'border-right: 1px solid white; (on hover)' },
+      { name: '.bdr-blu', attribute: 'border-right: 1px solid #009fdf;' },
+      { name: '.h-bdr-blu', attribute: 'border-right: 1px solid #009fdf; (on hover)' },
+      { name: '.bdr-blk', attribute: 'border-right: 1px solid black;' },
+      { name: '.h-bdr-blk', attribute: 'border-right: 1px solid black; (on hover)' },
+      { name: '.bdr-grn', attribute: 'border-right: 1px solid #00cc00;' },
+      { name: '.h-bdr-grn', attribute: 'border-right: 1px solid #00cc00; (on hover)' },
+      { name: '.bdr-red', attribute: 'border-right: 1px solid #ff0033;' },
+      { name: '.h-bdr-red', attribute: 'border-right: 1px solid #ff0033; (on hover)' },
+      { name: '.bdr-gry-dkr', attribute: 'border-right: 1px solid #333333;' },
+      { name: '.h-bdr-gry-dkr', attribute: 'border-right: 1px solid #333333; (on hover)' },
+      { name: '.bdr-gry-dk', attribute: 'border-right: 1px solid #666666;' },
+      { name: '.h-bdr-gry-dk', attribute: 'border-right: 1px solid #666666; (on hover)' },
+      { name: '.bdr-gry', attribute: 'border-right: 1px solid #999999;' },
+      { name: '.h-bdr-gry', attribute: 'border-right: 1px solid #999999; (on hover)' },
+      { name: '.bdr-gry-lt', attribute: 'border-right: 1px solid #cccccc;' },
+      { name: '.h-bdr-gry-lt', attribute: 'border-right: 1px solid #cccccc; (on hover)' },
+      { name: '.bdr-gry-ltr', attribute: 'border-right: 1px solid #ededed;' },
+      { name: '.h-bdr-gry-ltr', attribute: 'border-right: 1px solid #ededed; (on hover)' },
+      { name: '.bdb-wht', attribute: 'border-bottom: 1px solid white;' },
+      { name: '.h-bdb-wht', attribute: 'border-bottom: 1px solid white; (on hover)' },
+      { name: '.bdb-blu', attribute: 'border-bottom: 1px solid #009fdf;' },
+      { name: '.h-bdb-blu', attribute: 'border-bottom: 1px solid #009fdf; (on hover)' },
+      { name: '.bdb-blk', attribute: 'border-bottom: 1px solid black;' },
+      { name: '.h-bdb-blk', attribute: 'border-bottom: 1px solid black; (on hover)' },
+      { name: '.bdb-grn', attribute: 'border-bottom: 1px solid #00cc00;' },
+      { name: '.h-bdb-grn', attribute: 'border-bottom: 1px solid #00cc00; (on hover)' },
+      { name: '.bdb-red', attribute: 'border-bottom: 1px solid #ff0033;' },
+      { name: '.h-bdb-red', attribute: 'border-bottom: 1px solid #ff0033; (on hover)' },
+      { name: '.bdb-gry-dkr', attribute: 'border-bottom: 1px solid #333333;' },
+      { name: '.h-bdb-gry-dkr', attribute: 'border-bottom: 1px solid #333333; (on hover)' },
+      { name: '.bdb-gry-dk', attribute: 'border-bottom: 1px solid #666666;' },
+      { name: '.h-bdb-gry-dk', attribute: 'border-bottom: 1px solid #666666; (on hover)' },
+      { name: '.bdb-gry', attribute: 'border-bottom: 1px solid #999999;' },
+      { name: '.h-bdb-gry', attribute: 'border-bottom: 1px solid #999999; (on hover)' },
+      { name: '.bdb-gry-lt', attribute: 'border-bottom: 1px solid #cccccc;' },
+      { name: '.h-bdb-gry-lt', attribute: 'border-bottom: 1px solid #cccccc; (on hover)' },
+      { name: '.bdb-gry-ltr', attribute: 'border-bottom: 1px solid #ededed;' },
+      { name: '.h-bdb-gry-ltr', attribute: 'border-bottom: 1px solid #ededed; (on hover)' },
+      { name: '.bdl-wht', attribute: 'border-left: 1px solid white;' },
+      { name: '.h-bdl-wht', attribute: 'border-left: 1px solid white; (on hover)' },
+      { name: '.bdl-blu', attribute: 'border-left: 1px solid #009fdf;' },
+      { name: '.h-bdl-blu', attribute: 'border-left: 1px solid #009fdf; (on hover)' },
+      { name: '.bdl-blk', attribute: 'border-left: 1px solid black;' },
+      { name: '.h-bdl-blk', attribute: 'border-left: 1px solid black; (on hover)' },
+      { name: '.bdl-grn', attribute: 'border-left: 1px solid #00cc00;' },
+      { name: '.h-bdl-grn', attribute: 'border-left: 1px solid #00cc00; (on hover)' },
+      { name: '.bdl-red', attribute: 'border-left: 1px solid #ff0033;' },
+      { name: '.h-bdl-red', attribute: 'border-left: 1px solid #ff0033; (on hover)' },
+      { name: '.bdl-gry-dkr', attribute: 'border-left: 1px solid #333333;' },
+      { name: '.h-bdl-gry-dkr', attribute: 'border-left: 1px solid #333333; (on hover)' },
+      { name: '.bdl-gry-dk', attribute: 'border-left: 1px solid #666666;' },
+      { name: '.h-bdl-gry-dk', attribute: 'border-left: 1px solid #666666; (on hover)' },
+      { name: '.bdl-gry', attribute: 'border-left: 1px solid #999999;' },
+      { name: '.h-bdl-gry', attribute: 'border-left: 1px solid #999999; (on hover)' },
+      { name: '.bdl-gry-lt', attribute: 'border-left: 1px solid #cccccc;' },
+      { name: '.h-bdl-gry-lt', attribute: 'border-left: 1px solid #cccccc; (on hover)' },
+      { name: '.bdl-gry-ltr', attribute: 'border-left: 1px solid #ededed;' },
+      { name: '.h-bdl-gry-ltr', attribute: 'border-left: 1px solid #ededed; (on hover)' },
+      { name: '.bd-wht', attribute: 'border: 1px solid white;' },
+      { name: '.h-bd-wht', attribute: 'border: 1px solid white; (on hover)' },
+      { name: '.bd-blu', attribute: 'border: 1px solid #009fdf;' },
+      { name: '.h-bd-blu', attribute: 'border: 1px solid #009fdf; (on hover)' },
+      { name: '.bd-blk', attribute: 'border: 1px solid black;' },
+      { name: '.h-bd-blk', attribute: 'border: 1px solid black; (on hover)' },
+      { name: '.bd-grn', attribute: 'border: 1px solid #00cc00;' },
+      { name: '.h-bd-grn', attribute: 'border: 1px solid #00cc00; (on hover)' },
+      { name: '.bd-red', attribute: 'border: 1px solid #ff0033;' },
+      { name: '.h-bd-red', attribute: 'border: 1px solid #ff0033; (on hover)' },
+      { name: '.bd-gry-dkr', attribute: 'border: 1px solid #333333;' },
+      { name: '.h-bd-gry-dkr', attribute: 'border: 1px solid #333333; (on hover)' },
+      { name: '.bd-gry-dk', attribute: 'border: 1px solid #666666;' },
+      { name: '.h-bd-gry-dk', attribute: 'border: 1px solid #666666; (on hover)' },
+      { name: '.bd-gry', attribute: 'border: 1px solid #999999;' },
+      { name: '.h-bd-gry', attribute: 'border: 1px solid #999999; (on hover)' },
+      { name: '.bd-gry-lt', attribute: 'border: 1px solid #cccccc;' },
+      { name: '.h-bd-gry-lt', attribute: 'border: 1px solid #cccccc; (on hover)' },
+      { name: '.bd-gry-ltr', attribute: 'border: 1px solid #ededed;' },
+      { name: '.h-bd-gry-ltr', attribute: 'border: 1px solid #ededed; (on hover)' },
+      { name: '.bdw-0', attribute: 'border-width: 0px;' },
+      { name: '.h-bdw-0', attribute: 'border-width: 0px; (on hover)' },
+      { name: '.bdw-1', attribute: 'border-width: 1px;' },
+      { name: '.h-bdw-1', attribute: 'border-width: 1px; (on hover)' },
+      { name: '.bdw-2', attribute: 'border-width: 2px;' },
+      { name: '.h-bdw-2', attribute: 'border-width: 2px; (on hover)' },
+      { name: '.bdw-3', attribute: 'border-width: 3px;' },
+      { name: '.h-bdw-3', attribute: 'border-width: 3px; (on hover)' },
+      { name: '.bdw-4', attribute: 'border-width: 4px;' },
+      { name: '.h-bdw-4', attribute: 'border-width: 4px; (on hover)' },
+      { name: '.bdw-5', attribute: 'border-width: 5px;' },
+      { name: '.h-bdw-5', attribute: 'border-width: 5px; (on hover)' },
+      { name: '.bdtrrz-1', attribute: 'border-top-left-radius: 1px'},
+      { name: '.bdtrrz-2', attribute: 'border-top-left-radius: 2px'},
+      { name: '.bdtrrz-3', attribute: 'border-top-left-radius: 3px'},
+      { name: '.bdtrrz-4', attribute: 'border-top-left-radius: 4px'},
+      { name: '.bdtrrz-5', attribute: 'border-top-left-radius: 5px'},
+      { name: '.bdtrrz-6', attribute: 'border-top-left-radius: 6px'},
+      { name: '.bdtrrz-7', attribute: 'border-top-left-radius: 7px'},
+      { name: '.bdtrrz-8', attribute: 'border-top-left-radius: 8px'},
+      { name: '.bdtrrz-9', attribute: 'border-top-left-radius: 9px'},
+      { name: '.bdtrrz-10', attribute: 'border-top-left-radius: 10px'},
+      { name: '.bdtrrz-100', attribute: 'border-top-left-radius: 100px'},
+      { name: '.bdtlrz-1', attribute: 'border-top-right-radius: 1px'},
+      { name: '.bdtlrz-2', attribute: 'border-top-right-radius: 2px'},
+      { name: '.bdtlrz-3', attribute: 'border-top-right-radius: 3px'},
+      { name: '.bdtlrz-4', attribute: 'border-top-right-radius: 4px'},
+      { name: '.bdtlrz-5', attribute: 'border-top-right-radius: 5px'},
+      { name: '.bdtlrz-6', attribute: 'border-top-right-radius: 6px'},
+      { name: '.bdtlrz-7', attribute: 'border-top-right-radius: 7px'},
+      { name: '.bdtlrz-8', attribute: 'border-top-right-radius: 8px'},
+      { name: '.bdtlrz-9', attribute: 'border-top-right-radius: 9px'},
+      { name: '.bdtlrz-10', attribute: 'border-top-right-radius: 10px'},
+      { name: '.bdtlrz-100', attribute: 'border-top-right-radius: 100px'},
+      { name: '.bdbrrz-1', attribute: 'border-bottom-left-radius: 1px'},
+      { name: '.bdbrrz-2', attribute: 'border-bottom-left-radius: 2px'},
+      { name: '.bdbrrz-3', attribute: 'border-bottom-left-radius: 3px'},
+      { name: '.bdbrrz-4', attribute: 'border-bottom-left-radius: 4px'},
+      { name: '.bdbrrz-5', attribute: 'border-bottom-left-radius: 5px'},
+      { name: '.bdbrrz-6', attribute: 'border-bottom-left-radius: 6px'},
+      { name: '.bdbrrz-7', attribute: 'border-bottom-left-radius: 7px'},
+      { name: '.bdbrrz-8', attribute: 'border-bottom-left-radius: 8px'},
+      { name: '.bdbrrz-9', attribute: 'border-bottom-left-radius: 9px'},
+      { name: '.bdbrrz-10', attribute: 'border-bottom-left-radius: 10px'},
+      { name: '.bdbrrz-100', attribute: 'border-bottom-left-radius: 100px'},
+      { name: '.bdblrz-1', attribute: 'border-bottom-left-radius: 1px'},
+      { name: '.bdblrz-2', attribute: 'border-bottom-left-radius: 2px'},
+      { name: '.bdblrz-3', attribute: 'border-bottom-left-radius: 3px'},
+      { name: '.bdblrz-4', attribute: 'border-bottom-left-radius: 4px'},
+      { name: '.bdblrz-5', attribute: 'border-bottom-left-radius: 5px'},
+      { name: '.bdblrz-6', attribute: 'border-bottom-left-radius: 6px'},
+      { name: '.bdblrz-7', attribute: 'border-bottom-left-radius: 7px'},
+      { name: '.bdblrz-8', attribute: 'border-bottom-left-radius: 8px'},
+      { name: '.bdblrz-9', attribute: 'border-bottom-left-radius: 9px'},
+      { name: '.bdblrz-10', attribute: 'border-bottom-left-radius: 10px'},
+      { name: '.bdblrz-100', attribute: 'border-bottom-left-radius: 100px'},
+      { name: '.bds-n', attribute: 'border-style:none;'},
+      { name: '.bds-dt', attribute: 'border-style:dotted;'},
+      { name: '.bds-ds', attribute: 'border-style:dashed;'},
+      { name: '.bds-s', attribute: 'border-style:solid;'},
+      { name: '.bds-db', attribute: 'border-style:double;'},
+      { name: '.hid*', attribute: 'border: 0 !important; clip: rect(0 0 0 0) !important; height: 1px !important; margin: -1px !important; overflow: hidden !important; padding: 0 !important; position: absolute !important; width: 1px !important;'},
+      { name: '.shw*', attribute: 'display: block;' },
+      { name: '.v-v', attribute: 'visibility: visible' },
+      { name: '.v-h', attribute: 'visibility: hidden' },
+      { name: '.dis-n', attribute: 'display: none;' },
+      { name: '.dis-b', attribute: 'display: block;' },
+      { name: '.dis-i', attribute: 'display: inline;' },
+      { name: '.dis-ib', attribute: 'display: inline-block;' },
+      { name: '.dis-tb', attribute: 'display: table;' },
+      { name: '.dis-tbr', attribute: 'display: table-row;' },
+      { name: '.dis-tbc', attribute: 'display: table-cell;' },
+      { name: '.dis-li', attribute: 'display: list-item;' },
+      { name: '.dis-ri', attribute: 'display: run-in;' },
+      { name: '.dis-cp', attribute: 'display: compact;' },
+      { name: '.dis-itb', attribute: 'display: inline-table;' },
+      { name: '.dis-tbcl', attribute: 'display: table-column;' },
+      { name: '.dis-tbclg', attribute: 'display: table-column-group;' },
+      { name: '.dis-tbhg', attribute: 'display: table-header-group;' },
+      { name: '.dis-tbfg', attribute: 'display: table-footer-group;' },
+      { name: '.dis-tbrg', attribute: 'display: table-row-group;' },
+      { name: '.w-10', attribute: 'width: 10%;' },
+      { name: '.w-20', attribute: 'width: 20%;' },
+      { name: '.w-30', attribute: 'width: 30%;' },
+      { name: '.w-40', attribute: 'width: 40%;' },
+      { name: '.w-50', attribute: 'width: 50%;' },
+      { name: '.w-60', attribute: 'width: 60%;' },
+      { name: '.w-70', attribute: 'width: 70%;' },
+      { name: '.w-80', attribute: 'width: 80%;' },
+      { name: '.w-90', attribute: 'width: 90%;' },
+      { name: '.w-100', attribute: 'width: 100%;' },
+      { name: '.w-a', attribute: 'width: auto;' },
+      { name: '.maw-10', attribute: 'max-width: 10%;' },
+      { name: '.maw-20', attribute: 'max-width: 20%;' },
+      { name: '.maw-30', attribute: 'max-width: 30%;' },
+      { name: '.maw-40', attribute: 'max-width: 40%;' },
+      { name: '.maw-50', attribute: 'max-width: 50%;' },
+      { name: '.maw-60', attribute: 'max-width: 60%;' },
+      { name: '.maw-70', attribute: 'max-width: 70%;' },
+      { name: '.maw-80', attribute: 'max-width: 80%;' },
+      { name: '.maw-90', attribute: 'max-width: 90%;' },
+      { name: '.maw-100', attribute: 'max-width: 100%;' },
+      { name: '.maw-n', attribute: 'max-width: none; ' },
+      { name: '.miw-10', attribute: 'min-width: 10%;' },
+      { name: '.miw-20', attribute: 'min-width: 20%;' },
+      { name: '.miw-30', attribute: 'min-width: 30%;' },
+      { name: '.miw-40', attribute: 'min-width: 40%;' },
+      { name: '.miw-50', attribute: 'min-width: 50%;' },
+      { name: '.miw-60', attribute: 'min-width: 60%;' },
+      { name: '.miw-70', attribute: 'min-width: 70%;' },
+      { name: '.miw-80', attribute: 'min-width: 80%;' },
+      { name: '.miw-90', attribute: 'min-width: 90%;' },
+      { name: '.miw-100', attribute: 'min-width: 100%;' },
+      { name: '.h-10', attribute: 'height: 10%;' },
+      { name: '.h-20', attribute: 'height: 20%;' },
+      { name: '.h-30', attribute: 'height: 30%;' },
+      { name: '.h-40', attribute: 'height: 40%;' },
+      { name: '.h-50', attribute: 'height: 50%;' },
+      { name: '.h-60', attribute: 'height: 60%;' },
+      { name: '.h-70', attribute: 'height: 70%;' },
+      { name: '.h-80', attribute: 'height: 80%;' },
+      { name: '.h-90', attribute: 'height: 90%;' },
+      { name: '.h-100', attribute: 'height: 100%;' },
+      { name: '.h-a', attribute: 'height: auto;' },
+      { name: '.mah-10', attribute: 'max-height: 10%;' },
+      { name: '.mah-20', attribute: 'max-height: 20%;' },
+      { name: '.mah-30', attribute: 'max-height: 30%;' },
+      { name: '.mah-40', attribute: 'max-height: 40%;' },
+      { name: '.mah-50', attribute: 'max-height: 50%;' },
+      { name: '.mah-60', attribute: 'max-height: 60%;' },
+      { name: '.mah-70', attribute: 'max-height: 70%;' },
+      { name: '.mah-80', attribute: 'max-height: 80%;' },
+      { name: '.mah-90', attribute: 'max-height: 90%;' },
+      { name: '.mah-100', attribute: 'max-height: 100%;' },
+      { name: '.mah-n', attribute: 'max-height: none;' },
+      { name: '.mih-10', attribute: 'min-height: 10%;' },
+      { name: '.mih-20', attribute: 'min-height: 20%;' },
+      { name: '.mih-30', attribute: 'min-height: 30%;' },
+      { name: '.mih-40', attribute: 'min-height: 40%;' },
+      { name: '.mih-50', attribute: 'min-height: 50%;' },
+      { name: '.mih-60', attribute: 'min-height: 60%;' },
+      { name: '.mih-70', attribute: 'min-height: 70%;' },
+      { name: '.mih-80', attribute: 'min-height: 80%;' },
+      { name: '.mih-90', attribute: 'min-height: 90%;' },
+      { name: '.mih-100', attribute: 'min-height: 100%;' },
+      { name: '.va-sup', attribute: 'vertical-align: super;'},
+      { name: '.va-t', attribute: 'vertical-align: top;' },
+      { name: '.va-tt', attribute: 'vertical-align: text-top;' },
+      { name: '.va-m', attribute: 'vertical-align: middle;' },
+      { name: '.va-bl', attribute: 'vertical-align: baseline;' },
+      { name: '.va-b', attribute: 'vertical-align: bottom;' },
+      { name: '.va-tb ', attribute: 'vertical-align: text-bottom;' },
+      { name: '.va-sub', attribute: 'vertical-align: sub;' }
+    ]">
+
+    <section class="grid-wrap mb40">
+      <div class="grid mb10">
+        <div class="col5">
+          All classes with a * can all be appended with the <code>--t</code>, <code>--l</code>, <code>--d</code> responsive modifiers.
+        </div>
+      </div>
+      <div class="grid mb10">
+        <div class="col2">
+          <h5>Class</h5>
+        </div>
+        <div class="col10">
+          <h5>Attr</h5>
+        </div>
+      </div>
+
+      <div class="grid" ng-repeat="class in classes">
+        <div class="col2">
+          <h6>{{class.name}}</h6>
+        </div>
+        <div class="col10">
+          <code>{{class.attribute}}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid START -->
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Grid</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="grid">
+          <div class="col6 col1--d col9--t col4--l">
+            <div class="bgc-grn p5">
+              col6 col1--d col9--t col4--l
+            </div>
+          </div>
+          <div class="col6 col11--d col3--t col8--l">
+            <div class="bgc-grn p5">
+              col6 col11--d col3--t col8--l bgc-grn
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="grid">
+          <div class="col4 hd--l">
+            <div class="bgc-blu p5">
+              col4 hd--l
+            </div>
+          </div>
+          <div class="col4 hd--l">
+            <div class="bgc-blu p5">
+              col4 hd--l
+            </div>
+          </div>
+          <div class="col4 hd--l">
+            <div class="bgc-blu p5">
+              col4 hd--l
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="grid">
+          <div class="col3">
+            <div class="bgc-red p5">
+              col3
+            </div>
+          </div>
+          <div class="col3">
+            <div class="bgc-red p5">
+              col3
+            </div>
+          </div>
+          <div class="col3">
+            <div class="bgc-red p5">
+              col3
+            </div>
+          </div>
+          <div class="col3">
+            <div class="bgc-red p5">
+              col3
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="grid">
+          <div class="col2">
+            <div class="bgc-contest-ylw p5">
+              col2
+            </div>
+          </div>
+          <div class="col2">
+            <div class="bgc-contest-ylw p5">
+              col2
+            </div>
+          </div>
+          <div class="col2">
+            <div class="bgc-contest-ylw p5">
+              col2
+            </div>
+          </div>
+          <div class="col2">
+            <div class="bgc-contest-ylw p5">
+              col2
+            </div>
+          </div>
+          <div class="col2">
+            <div class="bgc-contest-ylw p5">
+              col2
+            </div>
+          </div>
+          <div class="col2">
+            <div class="bgc-contest-ylw p5">
+              col2
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="grid">
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+          <div class="col1">
+            <div class="bgc-gry p5">
+              col1
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Grid END -->
+
+    <!-- Strata START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Strata</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="grid-wrap">
+      <div class="grid py20">
+        <div class="col12 col3--t">
+          <p>Strata are used as full-width backgrounds on the site. Like content is grouped within the same strata. Only use strata for full-width/full-screen backgrounds. If you need to give a div a background, please check out <a href="#colors">colors</a>.</p>
+        </div>
+        <div class="col12 col8--t offset1--t">
+          <div class="bgc-gry-dkr p20">
+            <div class="grid">
+              <div class="col12">
+                <div class="c-wht">Stratum with gray background</div>
+              </div>
+            </div>
+          </div>
+          <div class="bgc-blk p20">
+            <div class="grid">
+              <div class="col12">
+                <div class="c-wht">Stratum with black background</div>
+              </div>
+            </div>
+          </div>
+          <div class="bgc-wht p20">
+            <div class="grid">
+              <div class="col12">
+                <div>Stratum with white background</div>
+              </div>
+            </div>
+          </div>
+          <div class="str--grad p20">
+            <div class="grid">
+              <div class="col12">
+                <div>Stratum with gradient background</div>
+              </div>
+            </div>
+          </div>
+          <div class="str--img str--50 p20" style="background-image: url(images/hs-diving.jpg)">
+            <div class="grid">
+              <div class="col12">
+                <div class="c-wht">Stratum with image background</div>
+              </div>
+            </div>
+          </div>
+          <div class="str--par p20" style="background-image: url(images/hs-steady.jpg)">
+            <div class="grid">
+              <div class="col12">
+                <div class="c-wht">Stratum with parallax background</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Strata END -->
+
+    <!-- Buttons START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Buttons</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h3>Button colors</h3>
+            <hr>
+          </div>
+          <div class="col12 col3--t">
+            <p>These are the only button colors in use on the GoPro site.</p>
+          </div>
+          <div class="col12 col8--t offset1--t">
+            <div class="grid">
+              <div class="col4">
+                <button class="btn">Normal</button>
+                <div class="mt10">
+                  <code>%button</code>
+                </div>
+              </div>
+              <div class="col4">
+                <a class="btn">Normal</a>
+                <div class="mt10">
+                  <code>%a.btn</code>
+                </div>
+              </div>
+              <div class="col4">
+                <button class="btn" disabled="disabled">Disabled</button>
+                <div class="mt10">
+                  <code>%button.btn(disabled)</code>
+                </div>
+              </div>
+              <div class="col4">
+                <input type="submit" value="Primary" class="btn btn--pri"/>
+                <div class="mt10">
+                  <code>%button.btn.btn--pri</code>
+                </div>
+              </div>
+              <div class="col4">
+                <button class="btn btn--yes">Success</button>
+                <div class="mt10">
+                  <code>%button.btn.btn--yes</code>
+                </div>
+              </div>
+              <div class="col4">
+                <button class="btn btn--no">Danger</button>
+                <div class="mt10">
+                  <code>%button.btn.btn--no</code>
+                </div>
+              </div>
+              <div class="col4">
+                <button class="btn btn--drk">Dark</button>
+                <div class="mt10">
+                  <code>%button.btn.btn--drk</code>
+                </div>
+              </div>
+              <div class="col4">
+                <button class="btn btn--link">Link</button>
+                <div class="mt10">
+                  <code>%button.btn.btn--link</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid py20">
+          <div class="col12">
+            <h3>Button sizes</h3>
+            <hr>
+          </div>
+          <div class="col12 col3--t">
+            <p>These are the button sizes currently used on the GoPro site.</p>
+          </div>
+          <div class="col12 col8--t offset1--t">
+            <div class="grid">
+              <div class="col4">
+                <button class="btn btn--large">Large</button>
+                <div class="mt10">
+                  <code>%btn.btn--large</code>
+                </div>
+              </div>
+              <div class="col4">
+                <a class="btn btn--regular">Regular</a>
+                <div class="mt10">
+                  <code>%a.btn.btn--regular</code>
+                </div>
+              </div>
+              <div class="col4">
+                <button class="btn btn--small">Small</button>
+                <div class="mt10">
+                  <code>%button.btn.btn--small</code>
+                </div>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="col4">
+                <button class="btn btn--block">Block</button>
+                <div class="mt10">
+                  <code>%button.btn.btn--block</code>
+                </div>
+              </div>
+              <div class="col4">
+                <button class="btn btn--mini">Mini</button>
+                <div class="mt10">
+                  <code>%button.btn.btn--mini</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid py20">
+          <div class="col12">
+            <h3>Buttons with arrows</h3>
+            <hr>
+          </div>
+          <div class="col12 col3--t">
+            <p>Use buttons with arrows for any button that links off to another page. The link button does not have a btn-arrow state.</p>
+            <div class="alert alert-info medium-top-margin">
+              <i class="icon-info-sign"></i>
+              <p>In order to make this button work in HAML, you must use a '&gt;' sign at then end of the '%i' statement to override the whitespace.</p>
+            </div>
+          </div>
+          <div class="col12 col8--t offset1--t">
+            <div class="grid">
+              <div class="col4">
+                <div class="btn btn--block btn--arw">
+                  Normal
+                  <i class="gopro-chevron-right"></i>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.btn.btn--arw
+      %i.gopro-chevron-right>
+  </pre>
+                </div>
+              </div>
+              <div class="col4">
+                <div class="btn btn--block btn--arw" disabled="disabled">
+                  Disabled
+                  <i class="gopro-chevron-right"></i>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.btn.btn--arw(disabled)
+      %i.gopro-chevron-right>
+  </pre>
+                </div>
+              </div>
+              <div class="col4">
+                <div class="btn btn--block btn--pri btn--arw">
+                  Primary
+                  <i class="gopro-chevron-right"></i>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.btn.btn--pri
+      %i.gopro-chevron-right>
+  </pre>
+                </div>
+              </div>
+              <div class="col4">
+                <div class="btn btn--block btn--yes btn--arw">
+                  Success
+                  <i class="gopro-chevron-right"></i>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.btn.btn--yes.btn--arw
+      %i.gopro-chevron-right>
+  </pre>
+                </div>
+              </div>
+              <div class="col4">
+                <div class="btn btn--block btn--no btn--arw">
+                  Danger
+                  <i class="gopro-chevron-right"></i>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.btn.btn--no.btn--arw
+      %i.gopro-chevron-right>
+  </pre>
+                </div>
+              </div>
+              <div class="col4">
+                <div class="btn btn--block btn--drk btn--arw">
+                  Dark
+                  <i class="gopro-chevron-right"></i>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.btn.btn--drk.btn--arw
+      %i.gopro-chevron-right>
+  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid py20">
+          <div class="col12">
+            <h3>Button-style Dropdowns</h3>
+            <hr>
+          </div>
+          <div class="col12 col3--t">
+            <p>All dropdowns on the site should have the following visual treatment. This does not apply to "select" elements used in forms.</p>
+          </div>
+          <div class="col12 col8--t offset1--t">
+            <div class="grid">
+              <div class="col6">
+                <div class="drp">
+                  <a class="drp__btn">Normal</a>
+                  <a class="drp__icon">>></a>
+                  <ul class="drp__menu" role="menu">
+                    <li>
+                      <a class="drp__link">Action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Another action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Something else here</a>
+                    </li>
+                    <li class="drp__item--sep">
+                      <a class="drp__link">Separated link</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.drp
+      %a.drp__btn
+      %a.drp__icon
+      %ul.drp__menu
+        %li
+          %a.drp__link
+        %li
+          %a.drp__link
+        %li
+          %a.drp__link
+        %li__item--sep
+          %a.drp__link
+  </pre>
+                </div>
+              </div>
+              <div class="col6">
+                <div class="drp drp--pri">
+                  <a class="drp__btn">Primary</a>
+                  <a class="drp__icon">>></a>
+                  <ul class="drp__menu" role="menu">
+                    <li>
+                      <a class="drp__link">Action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Another action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Something else here</a>
+                    </li>
+                    <li class="drp__item--sep">
+                      <a class="drp__link">Separated link</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.drp.drp--pri
+    &hellip;
+  </pre>
+                </div>
+              </div>
+              <div class="col6">
+                <div class="drp drp--yes">
+                  <a class="drp__btn">Normal</a>
+                  <a class="drp__icon">>></a>
+                  <ul class="drp__menu" role="menu">
+                    <li>
+                      <a class="drp__link">Action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Another action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Something else here</a>
+                    </li>
+                    <li class="drp__item--sep">
+                      <a class="drp__link">Separated link</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.drp.drp--yes
+    &hellip;
+  </pre>
+                </div>
+              </div>
+              <div class="col6">
+                <div class="drp drp--drk">
+                  <a class="drp__btn">Dark</a>
+                  <a class="drp__icon">>></a>
+                  <ul class="drp__menu" role="menu">
+                    <li>
+                      <a class="drp__link">Action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Another action</a>
+                    </li>
+                    <li>
+                      <a class="drp__link">Something else here</a>
+                    </li>
+                    <li class="drp__item--sep">
+                      <a class="drp__link">Separated link</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt10">
+  <pre class="p5 bgc-gry-ltr">
+    %div.drp.drp--drk
+    &hellip;
+  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Buttons END -->
+
+    <!-- Typography START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Typography</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12 col3--t">
+            <h3>Default Headers</h3>
+          </div>
+          <div class="col12 col9--t">
+            <h1>Test H1</h1>
+<pre class="p5 bgc-gry-ltr">
+%h1
+</pre>
+            <h2>Test H2</h2>
+<pre class="p5 bgc-gry-ltr">
+%h2
+</pre>
+            <h3>Test H3</h3>
+<pre class="p5 bgc-gry-ltr">
+%h3
+</pre>
+            <h4>Test H4</h4>
+<pre class="p5 bgc-gry-ltr">
+%h4
+</pre>
+            <h5>Test H5</h5>
+<pre class="p5 bgc-gry-ltr">
+%h5
+</pre>
+            <h6>Test H6</h6>
+<pre class="p5 bgc-gry-ltr">
+%h6
+</pre>
+          </div>
+          <div class="col12 col3--t mt50">
+            <h3>Default Body Copy</h3>
+          </div>
+          <div class="col12 col9--t mt50">
+            <p>This is a fair amount of body copy. It has been modified for your
+              viewing pleasure, and measured to absolute perfection.
+            </p>
+            <p>Once lorem ipsum was the standard for placeholder text just like this one,
+              but someday, centuries from now, the very text you read now will be the
+              default placeholder for young graphic designers across the world.
+            </p>
+<pre class="p5 bgc-gry-ltr">
+%p
+</pre>
+          </div>
+          <div class="col12 col3--t mt50">
+            <h3>Special Fonts</h3>
+          </div>
+          <div class="col12 col9--t mt50">
+            <p class="ff-arial fz-30 lh-36">Arial</p>
+<pre class="p5 bgc-gry-ltr">
+%span.ff-arial
+</pre>
+            <p class="ff-pfdin fz-30 lh-36">PF Din</p>
+<pre class="p5 bgc-gry-ltr">
+%span.ff-pfdin
+</pre>
+            <p class="ff-michroma fz-30 lh-36">Michroma</p>
+<pre class="p5 bgc-gry-ltr">
+%span.ff-michroma
+</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Typography END -->
+
+    <!-- Special Text Classes START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Special Text Classes</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="grid py20">
+
+          <!-- Parallax Heading START -->
+          <div class="col12 col3--t">
+            <h3> Parallax Heading</h3>
+            <p>The coolest of cool.</p>
+          </div>
+
+          <div class="col12 col9--t">
+            <div class="str--par p50" style="background-image: url(images/hs-diving.jpg)">
+              <div class="grid">
+                <div class="col12">
+                  <span class="head--parallax">
+                    Sweet Parallax Heading<sub>&trade;</sub>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+  %span.head--parallax // Can be used with any text (h1, h2, span, etc)
+    &hellip;
+    %sub> &hellip;
+</pre>
+            </div>
+          </div>
+          <!-- Parallax Heading END -->
+
+          <!-- World's Most Tagline START -->
+          <div class="col12 col3--t mt50">
+            <h3>"World's Most" Tagline</h3>
+            <p>The coolest of cool.</p>
+          </div>
+
+          <div class="col12 col9--t mt50">
+              <div class="grid">
+                <div class="col12">
+                  <span class="worlds-most">
+                    World's Most Awesomest Tagline<sub>&trade;</sub>
+                  </span>
+                </div>
+              </div>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+  %span.worlds-most // Can be used with any text (h1, h2, span, etc)
+    &hellip;
+    %sub> &hellip;
+</pre>
+            </div>
+          </div>
+          <!-- World's Most Tagline END -->
+
+          <!-- Black Edition Tagline START -->
+          <div class="col12 col3--t mt50">
+            <h3>"Black Edition" Tagline</h3>
+            <p>The coolest of cool.</p>
+          </div>
+
+          <div class="col12 col9--t mt50">
+              <div class="grid">
+                <div class="col12">
+                  <span class="black-edition">
+                    Black Edition
+                  </span>
+                </div>
+              </div>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+  %span.black-edition // Can be used with any text (h1, h2, span, etc)
+    &hellip;
+</pre>
+            </div>
+          </div>
+          <!-- Black Edition Tagline END -->
+
+          <!-- Average Rating START -->
+          <div class="col12 col3--t mt50">
+            <h3>Average Rating text</h3>
+            <p>The coolest of cool.</p>
+          </div>
+
+          <div class="col12 col9--t mt50">
+              <div class="grid">
+                <div class="col12">
+                  <span class="average-rating">
+                    4.9 out of 5 stars
+                  </span>
+                </div>
+              </div>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+  %span.average-rating // Can be used with any text (h1, h2, span, etc)
+    &hellip;
+</pre>
+            </div>
+          </div>
+          <!-- Average Rating END -->
+
+        </div>
+      </div>
+    </section>
+    <!-- Special Text Classes END -->
+
+    <!-- Forms START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+          <div class="grid py20">
+            <div class="col12">
+              <h2 class="c-wht">Forms</h2>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section>
+      <div class="grid-wrap pb60">
+        <div class="col6 mt30 pt30">
+          <form class="all-rq">
+            <fieldset>
+              <legend>Test Form</legend>
+              <label class="pt20">Test Input</label>
+              <input type="text">
+              <label class="opt msg">Textarea</label>
+              <textarea disabled></textarea>
+              <div class="checkbox">
+                <input type="checkbox" class="checkbox__input" id="chkbx">
+                <label for="chkbx">
+                  <span class="checkbox__btn"></span>
+                  <p class="checkbox__label">Checkbox Label</p>
+                </label>
+              </div>
+              <div class="checkbox field--inline">
+                <input type="checkbox" class="checkbox__input" id="chkbx-il">
+                <label for="chkbx-il">
+                  <span class="checkbox__btn"></span>
+                  <p class="checkbox__label">Inline One</p>
+                </label>
+              </div>
+              <div class="checkbox field--inline">
+                <input type="checkbox" class="checkbox__input" id="chkbx-il-2">
+                <label for="chkbx-il-2">
+                  <span class="checkbox__btn"></span>
+                  <p class="checkbox__label">Inline Two</p>
+                </label>
+              </div>
+              <div class="radio">
+                <input type="radio" class="radio__input" id="rdio">
+                <label for="rdio" class="field--required">
+                  <span class="radio__btn"></span>
+                  <p class="radio__label">Radio Button Label</p>
+                </label>
+              </div>
+              <label>Select an option:</label>
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+              <label>Select one or more:</label>
+              <select multiple>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <p class="mb0">Progress</p>
+              <div class="prg mb30">
+                <div class="prg__bar" style="width: 33%;">
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="bgc-blk col6 mt30 pt30">
+          <form class="form--dk all-rq">
+            <fieldset>
+              <legend>Test Form - Dark</legend>
+              <label class="pt20">Test Input</label>
+              <input type="text">
+              <label class="opt msg">Textarea</label>
+              <textarea disabled></textarea>
+              <div class="checkbox">
+                <input type="checkbox" class="checkbox__input" id="chkbx-dk">
+                <label for="chkbx-dk">
+                  <span class="checkbox__btn--dk"></span>
+                  <p class="checkbox__label">Checkbox Label</p>
+                </label>
+              </div>
+              <div class="checkbox field--inline">
+                <input type="checkbox" class="checkbox__input" id="chkbx-il-dk">
+                <label for="chkbx-il-dk">
+                  <span class="checkbox__btn--dk"></span>
+                  <p class="checkbox__label">Inline One</p>
+                </label>
+              </div>
+              <div class="checkbox field--inline">
+                <input type="checkbox" class="checkbox__input" id="chkbx-il-2-dk">
+                <label for="chkbx-il-2-dk">
+                  <span class="checkbox__btn--dk"></span>
+                  <p class="checkbox__label">Inline Two</p>
+                </label>
+              </div>
+              <div class="radio">
+                <input type="radio" class="radio__input" id="rdio-dk">
+                <label for="rdio-dk" class="field--required">
+                  <span class="radio__btn--dk"></span>
+                  <p class="radio__label">Radio Button Label</p>
+                </label>
+              </div>
+              <label>Select an option:</label>
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+              <label>Select one or more:</label>
+              <select multiple>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <p class="mb0 c-wht">Progress</p>
+              <div class="prg mb30">
+                <div class="prg__bar" style="width: 33%;">
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Forms END -->
+
+    <!-- Validations START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+          <div class="grid py20">
+            <div class="col12">
+              <h2 class="c-wht">Form Validations</h2>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section>
+      <div class="grid-wrap pb60">
+        <div class="col6 mt30 pt30">
+          <form class="all-rq">
+            <fieldset>
+              <legend>Test Form</legend>
+              <div class="control-group">
+                <label class="pt20">Test Input<span class="label__msg--error">This field is required.</span></label>
+                <input type="text" class="field--error">
+              </div>
+              <div class="control-group">
+                <label class="opt msg">Textarea<span class="label__msg--error">This field is required.</span></label>
+                <textarea class="field--error"></textarea>
+              </div>
+              <div class="control-group">
+                <label>What do you think? <span class="label__msg--error">Please select at least one.</span></label>
+                <div class="checkbox mt5 ml10">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-val-1">
+                  <label for="chkbx-val-1">
+                    <span class="checkbox__btn"></span>
+                    <p class="checkbox__label">Checkbox Label</p>
+                  </label>
+                </div>
+                <div class="checkbox ml10">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-val-2">
+                  <label for="chkbx-val-2">
+                    <span class="checkbox__btn"></span>
+                    <p class="checkbox__label">Checkbox Label</p>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label>What do you think about this? <span class="label__msg--error">Please select at least one.</span></label>
+                <div class="checkbox field--inline ml10 mt5">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-il-val-1">
+                  <label for="chkbx-il-val-1">
+                    <span class="checkbox__btn"></span>
+                    <p class="checkbox__label">Inline One</p>
+                  </label>
+                </div>
+                <div class="checkbox field--inline mt5">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-il-val-2">
+                  <label for="chkbx-il-val-2">
+                    <span class="checkbox__btn"></span>
+                    <p class="checkbox__label">Inline Two</p>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="radio">
+                  <input type="radio" class="radio__input" id="rdio-val">
+                  <label for="rdio-val" class="field--required">
+                    <span class="radio__btn radio__btn--error"></span>
+                    <p class="radio__label radio__label--error">Radio Button Label</p>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label>Select an option: <span class="label__msg--error">Please select one.</span></label>
+                <select class="field--error">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label>Select one or more: <span class="label__msg--error">Please select at least one.</span></label>
+                <select multiple class="field--error">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+              </div>
+              <p class="mb0">Progress</p>
+              <div class="prg mb30">
+                <div class="prg__bar" style="width: 33%;">
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="bgc-blk col6 mt30 pt30">
+          <form class="form--dk all-rq">
+            <fieldset>
+              <legend>Test Form - Dark</legend>
+              <div class="control-group">
+                <label class="pt20">Test Input<span class="label__msg--error">This field is required.</span></label>
+                <input type="text" class="field--error">
+              </div>
+              <div class="control-group">
+                <label>Textarea <span class="label__msg--error">This field is required.</span></label>
+                <textarea class="field--error"></textarea>
+              </div>
+              <div class="control-group">
+                <label>What do you think? <span class="label__msg--error">Please select at least one.</span></label>
+                <div class="checkbox ml10 mt5">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-dk-val">
+                  <label for="chkbx-dk-val">
+                    <span class="checkbox__btn--dk"></span>
+                    <p class="checkbox__label">Checkbox Label</p>
+                  </label>
+                </div>
+                <div class="checkbox ml10">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-dk-val-2">
+                  <label for="chkbx-dk-val-2">
+                    <span class="checkbox__btn--dk"></span>
+                    <p class="checkbox__label">Checkbox Label</p>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label>What do you think about this? <span class="label__msg--error">Please select at least one.</span></label>
+                <div class="checkbox field--inline ml10 mt5">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-il-dk-val-1">
+                  <label for="chkbx-il-dk-val-1">
+                    <span class="checkbox__btn--dk"></span>
+                    <p class="checkbox__label">Inline One</p>
+                  </label>
+                </div>
+                <div class="checkbox field--inline mt5">
+                  <input type="checkbox" class="checkbox__input" id="chkbx-il-2-dk-val">
+                  <label for="chkbx-il-2-dk-val">
+                    <span class="checkbox__btn--dk"></span>
+                    <p class="checkbox__label">Inline Two</p>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="radio">
+                  <input type="radio" class="radio__input" id="rdio-dk-val">
+                  <label for="rdio-dk-val" class="field--required">
+                    <span class="radio__btn--dk radio__btn--error"></span>
+                    <p class="radio__label radio__label--error">Radio Button Label</p>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label>Select an option: <span class="label__msg--error">Please select one.</span></label>
+                <select class="field--error">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label>Select one or more: <span class="label__msg--error">Please select at least one.</span></label>
+                <select multiple class="field--error">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+              </div>
+              <p class="mb0 c-wht">Progress</p>
+              <div class="prg mb30">
+                <div class="prg__bar" style="width: 33%;">
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Validations END -->
+
+    <!-- Typographic Units START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+          <div class="grid py20">
+            <div class="col12">
+              <h2 class="c-wht">Typographic Units</h2>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section>
+      <!-- Figcaption START -->
+      <div class="grid-wrap mt30">
+        <div class="grid">
+          <div class="col12 col3--t">
+            <h3>Figure Captions</h3>
+          </div>
+
+          <div class="col12 col6--t pb50">
+            <figure><img src="images/doge.jpg"></figure>
+            <figcaption><i>Fig 1.</i> The doge in his natural habitat.</figcaption>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+%figcaption &hellip;
+</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Figcaption END -->
+
+
+      <!-- <small> START -->
+      <div class="grid-wrap mt30">
+        <div class="grid">
+          <div class="col12 col3--t">
+            <h3>&lt;small&gt; Tags</h3>
+          </div>
+
+          <div class="col12 col6--t pb50">
+            <p>This is regular text, it's regular sized. <small>This is small text, it's quite small; 80% of its parent, to be exact.</small></p>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+%small &hellip;
+</pre>
+            </div>
+            <small class="fz-fine-print">This is fine print. It's very tiny, and fixed size.</small>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+%small.fz-fine-print &hellip;
+// Can be applied to any element,
+// but &lt;small&gt; is still generally the ideal.
+</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <small> END -->
+
+      <!-- Headings START -->
+      <div class="grid-wrap mt30">
+        <div class="grid">
+          <div class="col12 col3--t">
+            <h3>Headings</h3>
+            <p>Specially designed for GoPro.</p>
+            <p><b>Note:</b> These can be applied to ANY text element, so have fun with them! ;P</p>
+          </div>
+
+          <div class="col12 col9--t pb50">
+            <h1 class="head--lvl1">Heading Level 1</h1>
+            <span class="head--lvl1">Heading Level 1 (as a &lt;span&gt;)</span>
+<pre class="p5 bgc-gry-ltr mb20">
+%h1.head--lvl1
+%span.head--lvl1
+</pre>
+            <h2 class="head--lvl2">Heading Level 2</h2>
+            <span class="head--lvl2">Heading Level 2 (as a &lt;span&gt;)</span>
+<pre class="p5 bgc-gry-ltr mb20">
+%h2.head--lvl2
+%span.head--lvl2
+</pre>
+
+            <h3 class="head--lvl3">Heading Level 3</h3>
+            <span class="head--lvl3">Heading Level 3 (as a &lt;span&gt;)</span>
+<pre class="p5 bgc-gry-ltr mb20">
+%h3.head--lvl3
+%span.head--lvl3
+</pre>
+
+            <h4 class="head--lvl4">Heading Level 4</h4>
+            <span class="head--lvl4">Heading Level 4 (as a &lt;span&gt;)</span>
+<pre class="p5 bgc-gry-ltr mb20">
+%h4.head--lvl4
+%span.head--lvl4
+</pre>
+
+            <h5 class="head--lvl5">Heading Level 5</h5>
+            <span class="head--lvl5">Heading Level 5 (as a &lt;span&gt;)</span>
+<pre class="p5 bgc-gry-ltr mb20">
+%h5.head--lvl5
+%span.head--lvl5
+</pre>
+
+            <h6 class="head--lvl6">Heading Level 6</h6>
+            <span class="head--lvl6">Heading Level 6 (as a &lt;span&gt;)</span>
+<pre class="p5 bgc-gry-ltr mb20">
+%h6.head--lvl6
+%span.head--lvl6
+</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Headings END -->
+    </section>
+    <!-- Typographic Units END -->
+
+    <!-- Tooltips & Popovers START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+          <div class="grid py20">
+            <div class="col12">
+              <h2 class="c-wht">Tooltips &amp; Popovers</h2>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section>
+      <!-- Tooltips START -->
+      <div class="grid-wrap mt30">
+        <div class="grid">
+          <div class="col12 col3--t">
+            <h3>Tooltips</h3>
+          </div>
+
+          <div class="col12 col9--t pb50">
+            <p>
+              The
+              <span class="tooltip__trigger tooltip__trigger--hoverable">
+                doge
+
+                <span class="tooltip tooltip--top fz-10 lh-12 ani-fade-in ani-fast" style="width: 200px">
+                  tooltip--top
+                </span>
+              </span>
+
+              in his natural habitat.
+
+            </p>
+
+
+            <p>
+              The
+              <span class="tooltip__trigger tooltip__trigger--hoverable">
+                doge
+
+                <span class="tooltip tooltip--right fz-10 lh-12 ani-fade-in ani-fast" style="width: 200px">
+                  tooltip--right
+                </span>
+              </span>
+
+              in his natural habitat.
+
+            </p>
+
+
+            <p>
+              The
+              <span class="tooltip__trigger tooltip__trigger--hoverable">
+                doge
+
+                <span class="tooltip tooltip--bottom fz-10 lh-12 ani-fade-in ani-fast" style="width: 200px">
+                  tooltip--bottom
+                </span>
+              </span>
+
+              in his natural habitat.
+
+            </p>
+
+
+            <p>
+              The
+              <a class="tooltip__trigger tooltip__trigger--hoverable">
+                doge
+
+                <span class="tooltip tooltip--left fz-10 lh-12 ani-fade-in ani-fast" style="width: 200px">
+                  tooltip--left
+                </span>
+              </a>
+
+              in his natural habitat.
+
+            </p>
+
+            <p>
+              The
+              <span class="tooltip__trigger tooltip__trigger--clickable">
+                doge
+
+                <span class="tooltip tooltip--right tooltip--open fz-10 lh-12 ani-fade-in ani-fast" style="width: 200px">
+                  Doge is a slang term for “dog” that is primarily associated with pictures of Shiba Inus (nicknamed “Shibe”) and internal monologue captions on Tumblr.
+                </span>
+              </span>
+
+              in his natural habitat.
+
+            </p>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+%p
+  %span.tooltip__trigger.tooltip__trigger--[clickable|hoverable]
+    ...
+    %span.tooltip.tooltip--[direction]
+      ...
+</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tooltips END -->
+    </section>
+
+    <!-- Tooltips & Popovers END -->
+
+    <!-- Icons START -->
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Icons</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="mb30 grid">
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--zoom-out"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--zoom-in"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--wifi"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--volume-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--volume-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--vimeo"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--vimeo-box"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--video-camera"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--twitter"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--triangle-up-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--triangle-right"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--triangle-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--triangle-left"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--triangle-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--triangle-left-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--thumbs-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--thumbs-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--sun"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star-half"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--search"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--remote"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--plus"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--playlist"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--youtube-wire"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--play-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--youtube"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--phone"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--pdf"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--play"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--pause"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--mute"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--minus"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--instagram"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--info"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--info-wire"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--heart"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--hamburger"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--google-plus"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--google-plus-box"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--facebook"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--facebook-box"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--doc"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--countries"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--cog"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--close"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--chevron-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--chevron-right"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--chevron-left"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--chevron-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--check"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--bookmark"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-up-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-right"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-right-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-left"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-left-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--arrow-down-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--superview"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--plus-wire"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--minus-wire"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--triangle-down-circle"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--pinterest"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--pinterest-box"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--frame"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--flag"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--cart"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--camera"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--track"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--contact"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--manuals"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--blowhorn"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Icons END -->
+
+    <!-- Animations START -->
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Animations</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="mb30 grid">
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-spin"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-float"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-shake"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-pulse"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-in"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-in-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-in-right"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-in-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-in-left"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-out"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-out-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-out-right"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-out-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-fade-out-left"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-in-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-in-right"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-in-down"></i>
+          </div>
+          <!-- This guy is breaking the page -->
+          <!-- <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-in-left"></i>
+          </div> -->
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-out-up"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-out-right"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-out-down"></i>
+          </div>
+          <div class="mb20 col2 col1--d col1--t col1--l">
+            <i class="icon icon--star ani-slide-out-left"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Animations END -->
+
+    <!-- Flash Messages START -->
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Flash Messages</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap mt30">
+        <div class="grid">
+          <!-- Error START-->
+          <div class="col12 col3--t">
+            <h3>Error</h3>
+          </div>
+
+          <div class="col12 col9--t pb50">
+            <div class="flash--error grid-wrap">
+              <div class="grid">
+                <div class="col11">You did that wrong! <a href="" class="flash__link flash__link--error">Fail!</a></div>
+                <div class="col1 ta-r"><a href=""><i class="icon icon--close fz-12"></i></a></div>
+              </div>
+            </div>
+<pre class="p5 bgc-gry-ltr">
+.flash--error
+  content
+  = link_to "Link", "link", class: "flash__link--error"
+</pre>
+          </div>
+          <!-- Error END -->
+          <!-- Success START-->
+          <div class="col12 col3--t">
+            <h3>Success</h3>
+          </div>
+
+          <div class="col12 col9--t pb50">
+            <div class="flash--success">
+              Good job! You get a <a href="" class="flash__link--success">cookie</a>!
+            </div>
+<pre class="p5 bgc-gry-ltr">
+.flash--success
+  content
+  = link_to "Link", "link", class: "flash__link--success"
+</pre>
+          </div>
+          <!-- Success END -->
+          <!-- Notice START-->
+          <div class="col12 col3--t">
+            <h3>Notice</h3>
+          </div>
+
+          <div class="col12 col9--t pb50">
+            <div class="flash--notice">
+              FYI: You <a href="" class="flash__link--notice">might</a> want to pay attention to this
+            </div>
+<pre class="p5 bgc-gry-ltr">
+.flash--notice
+  content
+  = link_to "Link", "link", class: "flash__link--notice"
+</pre>
+          </div>
+          <!-- Notice END -->
+          <!-- Warning START-->
+          <div class="col12 col3--t">
+            <h3>Warning</h3>
+          </div>
+
+          <div class="col12 col9--t pb50">
+            <div class="flash--warning">
+              Warning! <a href="" class="flash__link--warning">Danger</a>, Will Robinson!
+            </div>
+<pre class="p5 bgc-gry-ltr">
+.flash--warning
+  content
+  = link_to "Link", "link", class: "flash__link--warning"
+</pre>
+          </div>
+          <!-- Warning END -->
+        </div>
+      </div>
+    </section>
+    <!-- Flash Messages END -->
+
+    <!-- Tables START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+          <div class="grid py20">
+            <div class="col12">
+              <h2 class="c-wht">Tables</h2>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section class="pt20">
+      <div class="grid-wrap">
+        <div class="grid">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="table__th"></th>
+                <th class="table__th">Windows</th>
+                <th class="table__th">Mac</th>
+              </tr>
+            </thead>
+            <tbody class="table__body--striped">
+              <tr>
+                <td class="table__td--st">hardware</th>
+                <td class="table__td"></td>
+                <td class="table__td"></td>
+              </tr>
+              <tr>
+                <td class="table__td--rt">Operating System</td>
+                <td class="table__td">Windows XP, Vista, Windows 7, Windows 8</td>
+                <td class="table__td">Mac OS 10.6 or greater</td>
+              </tr>
+              <tr>
+                <td class="table__td--rt">CPU</td>
+                <td class="table__td">Minimum: Core 2 Duo 2.66 GHz Recommended: Core i7</td>
+                <td class="table__td">Intel Mac Only</td>
+              </tr>
+              <tr>
+                <td class="table__td--rt">Graphics Card</td>
+                <td class="table__td">Graphics card that supports OpenGL 1.2 or higher</td>
+                <td class="table__td">Graphocs card that supports OpenGL 1.2 or higher</td>
+              <tr>
+                <td class="table__td--rt">RAM</td>
+                <td class="table__td">4GB or greater</td>
+                <td class="table__td">4GB or greater</td>
+              </tr>
+              <tr>
+                <td class="table__td--rt">Hard Drive</td>
+                <td class="table__td">Minimum: 5400 RPM intel drive Recommeneded: 7200 RPM drive if external, USB 3.0 or eSATA</td>
+                <td class="table__td">Minimum: 5400 RPM intel drive Recommeneded: 7200 RPM drive if external, USB 3.0 or eSATA</td>
+              </tr>
+              <tr>
+                <td class="table__td--rt">Quick Time</td>
+                <td class="table__td">Version 7.6 or greater</td>
+                <td class="table__td">Version 7.6 or greater</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="table__footer">*These are footnotes for this table.</p>
+        </div>
+      </div>
+    </section>
+    <!-- Tables END -->
+
+    <!-- Accordions START -->
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Accordions</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap mt30">
+        <div class="grid">
+          <!-- Content Accordion START-->
+          <div class="col12 col3--t">
+            <h3>Accordion with Content</h3>
+          </div>
+
+          <div class="col12 col9--t pb50">
+
+            <div class="accordion">
+              <div class="accordion__section">
+                <span class="accordion__header bgc-gry-ltr">Section Header 1</span>
+                <div class="accordion__content">This is the subcontent! Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.</div>
+              </div>
+              <div class="accordion__section">
+                <span class="accordion__header bgc-gry-ltr">Section Header 2</span>
+                <div class="accordion__content">This is the subcontent! Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.</div>
+              </div>
+            </div>
+
+<pre class="p5 bgc-gry-ltr">
+.accordion
+  .accordion__section
+    .accordion__header.bgc-gry-ltr ...
+    .accordion__content ...
+  .accordion__section
+    .accordion__header.bgc-gry-ltr ...
+    .accordion__content ...
+</pre>
+          </div>
+          <!-- Content Accordion END -->
+
+          <!-- Nav Accordion START-->
+          <div class="col12 col3--t">
+            <h3>Nav-Style Accordion</h3>
+          </div>
+
+          <div class="col12 col9--t pb50">
+
+            <ul class="accordion">
+              <li class="accordion__section accordion__section--open">
+                <span class="accordion__header bgc-gry-ltr">Section Header 1</span>
+                <ul class="accordion__content">
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+                </ul>
+              </li>
+
+              <li class="accordion__section accordion__section--closed">
+                <span class="accordion__header bgc-gry-ltr">Section Header 1</span>
+                <ul class="accordion__content">
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+                </ul>
+              </li>
+
+            </ul>
+<pre class="p5 bgc-gry-ltr">
+%ul.accordion
+  %li.accordion__section
+    %span.accordion__header.bgc-gry-ltr ...
+    %ul.accordion__content
+      %li ...
+      %li ...
+      %li ...
+  %li.accordion__section
+    %span.accordion__header.bgc-gry-ltr ...
+    %ul.accordion__content
+      %li ...
+      %li ...
+      %li ...
+</pre>
+
+          </div>
+          <!-- Nav Accordion END -->
+        </div>
+      </div>
+    </section>
+    <!-- Accordions END -->
+
+    <!-- Modals START (Uncomment to view until Javascript has been integrated) -->
+    <!-- <div class="modal-wrap">
+      <div class="modal">
+        <div class="modal__header">
+          <h3>Modal Header</h3>
+          <a href="#" class="modal__close">X</a>
+        </div>
+        <div class="modal__body">
+          <p>Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+          <p>Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--pri">Button</a>
+        </div>
+      </div>
+
+      <div class="modal modal--media">
+        <div class="modal__body">
+
+          <a href="#" class="modal__close">X</a>
+          <img src="../images/doge.jpg">
+        </div>
+        <div class="modal__footer">
+          <a href="#" class="btn btn--pri">Button</a>
+        </div>
+      </div>
+    </div> -->
+    <!-- Modals END -->
+    <!-- Tabs START -->
+    <section class="bgc-gry-dkr mb40">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Tabs</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="grid">
+          <!-- Underlined Tabs START -->
+          <div class="col12 col3--t">
+            <h3>Underlined-Style Tabs</h3>
+          </div>
+          <div class="col12 col9--t">
+            <div class="grid">
+              <ul>
+                <li class="tab col2">
+                  <a href="#">
+                    <h2 class="c-gry h-c-blk bdb-gry h-bdb-blk bdw-5 h-bdw-5 ff-pfdin tt-uc fz-22">Tab 1</h2>
+                  </a>
+                </li>
+                <li class="tab col2">
+                  <a href="#">
+                    <h2 class="c-blk bdb-blk bdw-5 ff-pfdin tt-uc fz-22">Tab 2</h2>
+                  </a>
+                </li>
+                <li class="tab col2">
+                  <a href="#">
+                    <h2 class="c-gry h-c-blk bdb-gry h-bdb-blk bdw-5 h-bdw-5 ff-pfdin tt-uc fz-22">Tab 3</h2>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="grid mt10">
+              <article class="tab__content col6">
+                This is the content for article 1
+              </article>
+              <article class="tab__content tab__content--active col6">
+                This is the content for article 2
+              </article>
+              <article class="tab__content col6">
+                This is the content for article 3
+              </article>
+            </div>
+<pre class="p5 bgc-gry-ltr">
+// Required classes
+%ul
+  %li.tab
+  %li.tab
+  %li.tab
+%article.tab__content
+%article.tab__content--active
+%article.tab__content
+</pre>
+          </div>
+          <!-- Underlined Tabs END -->
+          <!-- Pill Tabs START -->
+          <div class="col12 col3--t">
+            <h3>Pill-Style Tabs</h3>
+          </div>
+          <div class="col12 col9--t">
+            <div class="grid">
+              <ul>
+                <li class="tab">
+                  <a href="#" class="tt-uc ff-pfdin fz-16 py10 px20 h-bgc-gry-ltr h-c-blu bdr-2 lh-16">
+                    Tab 1
+                  </a>
+                </li>
+                <li class="tab">
+                  <a href="#" class="tt-uc ff-pfdin fz-16 py10 px20 bgc-blu c-wht h-c-wht bdr-2 lh-16">
+                    Tab 2
+                  </a>
+                </li>
+                <li class="tab">
+                  <a href="#" class="tt-uc ff-pfdin fz-16 py10 px20 h-bgc-gry-ltr h-c-blu bdr-2 lh-16">
+                    Tab 3
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="grid mt10">
+              <article class="tab__content col6">
+                This is the content for article 1
+              </article>
+              <article class="tab__content tab__content--active col6">
+                This is the content for article 2
+              </article>
+              <article class="tab__content col6">
+                This is the content for article 3
+              </article>
+            </div>
+<pre class="p5 bgc-gry-ltr">
+// Required classes
+%ul
+  %li.tab
+  %li.tab
+  %li.tab
+%article.tab__content
+%article.tab__content--active
+%article.tab__content
+</pre>
+          </div>
+          <!-- Pill Tabs END -->
+          <!-- Dark Pill Tabs START -->
+          <div class="col12 col3--t">
+            <h3>Pill-Style Tabs on Dark</h3>
+          </div>
+          <div class="col12 col9--t bgc-blk pt30">
+            <div class="grid">
+              <ul>
+                <li class="tab">
+                  <a href="#" class="tt-uc ff-pfdin fz-16 py10 px20 h-c-wht bdr-2 lh-16">
+                    Tab 1
+                  </a>
+                </li>
+                <li class="tab">
+                  <a href="#" class="tt-uc ff-pfdin fz-16 py10 px20 bgc-gry-dkr c-blu h-c-blu bdr-2 lh-16">
+                    Tab 2
+                  </a>
+                </li>
+                <li class="tab">
+                  <a href="#" class="tt-uc ff-pfdin fz-16 py10 px20 h-c-wht bdr-2 lh-16">
+                    Tab 3
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="grid mt10 c-wht">
+              <article class="tab__content col6">
+                This is the content for article 1
+              </article>
+              <article class="tab__content tab__content--active col6">
+                This is the content for article 2
+              </article>
+              <article class="tab__content col6">
+                This is the content for article 3
+              </article>
+            </div>
+<pre class="p5 bgc-gry-ltr">
+// Required classes
+%ul
+  %li.tab
+  %li.tab
+  %li.tab
+%article.tab__content
+%article.tab__content--active
+%article.tab__content
+</pre>
+          </div>
+          <!-- Dark Pill Tabs END -->
+        </div>
+      </div>
+    </section>
+    <!-- Tabs END -->
+
+    <!-- Special Text Classes START -->
+    <section class="bgc-gry-dkr mt50">
+      <div class="grid-wrap">
+        <div class="grid py20">
+          <div class="col12">
+            <h2 class="c-wht">Media-Related Classes</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid-wrap">
+        <div class="grid py20">
+
+          <!-- Responsive Video Wrapper START -->
+          <div class="col12 col5--t">
+            <h3>Responsive Video Wrappers</h3>
+            <p>For making Videos, especially YouTube embeds, responsive. (Resize the page for MAGIC!)</p>
+          </div>
+
+          <div class="col12 col7--t">
+            <div class="vid-wrap">
+              <iframe width="560" height="315" src="http://www.youtube.com/embed/7Sv_Bv1H7BQ?rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="mt10">
+<pre class="p5 bgc-gry-ltr">
+  %div.vid-wrap
+    [youtube embed here]
+</pre>
+            </div>
+          </div>
+          <!--  Responsive Video Wrapper END -->
+        </div>
+      </div>
+    </section>
+    <!-- Special Text Classes END -->
+
+  </body>
+
+  <!-- To do: Remove for when we move this file into the Wardrobe  -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+
+</html>
+
+

@@ -1,0 +1,104 @@
+#!/usr/bin/env ruby
+
+#
+# script/deploy -
+#
+# Script to package and deploy bower package to S3/CDN.
+# Also updates Flame server with the version/release info.
+#
+# Run with -h for help
+#
+
+require 'rubygems'
+require 'getoptlong'
+
+require 'bundler/setup'
+Bundler.require
+
+# Build artifacts
+PACKAGE                   = 'ascot'
+ARTIFACT                  = './ascot.min.js'
+ARTIFACT_S3_TEMPLATE      = "./ascot.min-[sha1].js"
+
+########################################
+# CLI parsing
+########################################
+
+def usage
+  puts <<-EOF
+deploy [OPTIONS]
+  -h, --help:
+    Show this help text and exit.
+
+  -e, --env [enviroment]
+    Environment to deploy pacakge to: qa, integration, staging,
+    production.  QA is default if not specified.
+
+  -v, --version [version]
+    Version of package to deploy, in semver format.  Uses latest version
+    tag in git if not specified.
+    NOTE that this script will check out workarea to the specified tag.
+
+  -d, --debug
+    Print a detailed log of all activity. False if not specified.
+
+  -D, --dry-run
+    Runs, but does not actually perform any destructive actions to github, S3,
+    or Flame registry.
+  EOF
+  exit
+end
+
+def parse_args
+  args = {}
+  opts = GetoptLong.new(
+      [ '--debug', '-d' , GetoptLong::NO_ARGUMENT ],
+      [ '--env', '-e', GetoptLong::REQUIRED_ARGUMENT ],
+      [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+      [ '--version', '-v', GetoptLong::REQUIRED_ARGUMENT ],
+      [ '--dry-run', '-D', GetoptLong::NO_ARGUMENT ]
+  )
+
+  # defaults
+  args[:debug] = true
+  args[:dry_run] = false
+  args[:env] = :qa
+
+  opts.each do |opt, arg|
+    case opt
+      when '--help'
+        usage
+      when '--version'
+        args[:version] = arg
+      when '--env'
+        env = arg.downcase
+        if ['staging', 'stage', 's'].include?(env)
+          args[:env] = :staging
+        end
+        if ['production', 'prod', 'p'].include?(env)
+          args[:env] = :production
+        end
+      when '--debug'
+        args[:debug] = true
+      when '--dry-run'
+        args[:dry_run] = true
+    end
+  end
+
+  args.each { |k,v| puts "key: #{k}, value: #{v}" } if (args[:debug])
+  args
+end
+
+
+########################################
+# Main
+########################################
+
+def main
+  args = parse_args
+  Flame::Deployer.new(args[:env], args).deploy(PACKAGE, ARTIFACT, ARTIFACT_S3_TEMPLATE)
+  puts("Package deploy SUCCESS")
+  exit 0
+end
+
+main

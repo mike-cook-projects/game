@@ -1,0 +1,61 @@
+{   "name": "pkg-ascot",
+    "description": "Directives for dapper",
+    "repository": "https://github.com/generalthings/pkg-ascot",
+    "devDependencies": {
+
+        "express": "~3.4.7",
+        "requirejs": "~2.1.10",
+
+        "gulp": "3.5.6",
+        "gulp-util": "2.2.14",
+        "gulp-minify-css": "~0.3.0",
+        "gulp-uglify": "~0.2.0",
+        "gulp-rename": "~0.2.2",
+        "gulp-clean": "~0.2.4",
+        "gulp-concat": "~2.1.7",
+        "gulp-less": "~1.2.3",
+        "gulp-inject": "~0.4.1",
+        "gulp-using": "~0.0.1",
+        "gulp-html2js": "~0.0.1",
+        "gulp-ng-html2js": "~0.1.6",
+        "gulp-order": "~1.0.6",
+        "gulp-rimraf": "~0.0.9",
+        "gulp-angular-templatecache": "~1.0.3",
+        "gulp-ngmin": "~0.1.2",
+        "gulp-uglify": "~0.2.1",
+        "gulp-exec": "~1.0.4",
+
+        "run-sequence": "~0.3.6",
+        "q": "~1.0.1",
+
+        "karma-jasmine": "~0.1.5",
+        "karma-requirejs": "~0.2.1",
+        "karma-phantomjs-launcher": "~0.1.1",
+        "karma": "~0.10.9",
+        "karma-junit-reporter": "~0.1",
+        "karma-osx-reporter": "0.0.4",
+
+        "protractor": "~0.19.0"
+    },
+    "dependencies": {
+        "angular-browserify-event-dispatcher": "^0.0.7",
+        "extend-url": "^0.1.0",
+        "parse-url": "0.0.4",
+        "parted": "^0.1.1",
+        "lodash": "^2.4.1",
+        "uritemplate": "^0.3.4"
+    },
+    "browserify": {
+        "transform": [
+            "browserify-shim",
+            "browserify-ngmin"
+        ]
+    },
+    "browserify-shim": {
+        "angular": "global:angular"
+    },
+    "scripts": {
+      "build": "gulp",
+      "clean": "gulp clean"
+    }
+}
