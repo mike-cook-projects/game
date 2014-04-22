@@ -5,10 +5,8 @@ angular.module('game.factories.tile', [])
   .constant("Z_ROW_ADJUSTMENT", 100)
   .constant("Z_OFFSET", 22)
   .factory("Tile", function(TILE_WIDTH, TILE_HEIGHT, Z_LEVEL_ADJUSTMENT, Z_ROW_ADJUSTMENT, Z_OFFSET) {
-    return function Tile(game, position, options) {
+    return function Tile(position, options) {
       var tile = this;
-
-      tile.game = game;
 
       tile.translated = { x: 0, y: 0, z: 0 };
       tile.position = { x: 0, y: 0, z: 0 };
@@ -35,14 +33,6 @@ angular.module('game.factories.tile', [])
         }
       }
 
-      tile.remove = function() {
-
-        tile.type = "air";
-        console.log(tile.type);
-      }
-
       tile.setPosition(position);
-
-      //return tile;
     }
   })

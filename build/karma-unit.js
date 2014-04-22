@@ -15,6 +15,7 @@ module.exports = function(karma) {
       'build/vendor/js/angular/angular.js',
       'build/app/app.js',
       'build/app/templates.js',
+      'build/app/common/services/tiles.js',
       'build/app/common/directives/tile/tile.js',
       'build/app/common/factories/tile/tile.js',
       //endinject

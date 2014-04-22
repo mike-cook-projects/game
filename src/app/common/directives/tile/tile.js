@@ -1,18 +1,47 @@
 angular.module('game.directives.tile', [])
-  .controller("TileCtrl", function() {
+  .controller("TileCtrl", function(Tiles) {
     var tile = this;
 
+    tile.setupTile = function() {
+      // Check if this is a ghost block (you click through it)
+      if (tile.data.type === "guide") {
+        // Ignore clicks
+        tile.element.css("pointer-events", "none");
+      }
+    }
+
     tile.onClick = function($event) {
+      // Remove any guides
+      if (Tiles.guide) {
+        Tiles.remove(Tiles.guide);
+        Tiles.guide = null;
+        console.log("removed it", Tiles.guide);
+      }
+
       // Check if shift is being held
       if ($event.shiftKey) {
-        tile.data.remove();
-
-        // Remove any guides
-        //$(".guide").remove();
+        Tiles.remove(tile.data);
 
         // Exit
         return false;
       }
+
+      // Grab the face we want to monitor
+      var face = angular.element($event.toElement);
+
+      // Adjust the position based on the face we are over
+      var position = {
+        x: face.hasClass("left") ? tile.data.position.x - 1 :
+                                   tile.data.position.x,
+        y: face.hasClass("right") ? tile.data.position.y + 1 :
+                                    tile.data.position.y,
+        z: face.hasClass("top") ? tile.data.position.z + 1 :
+                                  tile.data.position.z
+      }
+
+      Tiles.addTile(position, { type: "grass" });
+
+
 
       // Get the tile id
       /*var id = element.id;
@@ -38,26 +67,30 @@ angular.module('game.directives.tile', [])
       $("#map").append(Doodle.createTile(col, row, level, type));*/
     }
 
-    tile.onMouseover = function() {
+    tile.onMouseenter = function($event) {
+      // If this is a guide tile, we don't care
+      if (tile.data.type === "guide") return false;
+
+      // Grab the face we want to monitor
+      var face = angular.element($event.toElement);
+
       // Adjust the position based on the face we are over
       var position = {
-        x: tile.element.hasClass("left") ? tile.data.position.x - 1 :
-                                           tile.data.position.x,
-        y: tile.element.hasClass("right") ? tile.data.position.y + 1 :
-                                           tile.data.position.y,
-        z: tile.element.hasClass("top") ? tile.data.position.z + 1 :
-                                          tile.data.position.z
+        x: face.hasClass("left") ? tile.data.position.x - 1 :
+                                   tile.data.position.x,
+        y: face.hasClass("right") ? tile.data.position.y + 1 :
+                                    tile.data.position.y,
+        z: face.hasClass("top") ? tile.data.position.z + 1 :
+                                  tile.data.position.z
       }
 
       // Create a new tile
-      tile.data.game.guide = tile.data.game.addTile(
-        position,
-        { type: "guide" }
-      );
+      Tiles.guide = Tiles.addTile(position, { type: "guide" })
     }
 
     tile.onMouseout = function() {
-      tile.data.game.guide
+      console.log("removing?", Tiles.guide);
+      if (Tiles.guide) Tiles.remove(Tiles.guide);
     }
 
     // Set the onClick function
@@ -81,6 +114,9 @@ angular.module('game.directives.tile', [])
       link: function(scope, element, attrs, tile) {
         tile.element = element;
         tile.data = scope.ngModel;
+
+        // Setup any special behavior
+        tile.setupTile();
       }
     }
   })

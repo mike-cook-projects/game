@@ -2,66 +2,33 @@
 
 angular.module('game', [
   'templates',
+  'game.services.tiles',
   'game.factories.tile',
   'game.directives.tile'
 ])
   .constant("MAP_HEIGHT", 20)
   .constant("MAP_WIDTH", 20)
-  .controller("GameCtrl", function(Tile, MAP_HEIGHT, MAP_WIDTH) {
+  .controller("GameCtrl", function(Tiles, MAP_HEIGHT, MAP_WIDTH) {
+    // Namespace the game
     var game = this;
 
-    game.tileIndex = 0;
+    // The list of tiles the map is tracking (from the tiles service)
+    game.tiles = Tiles.list;
 
-    game.tiles = [];
-
+    //// Create a game map
     game.createMap = function() {
-      // Loop through the Doodle columns
+      // Loop through the map columns
       for (var x = 0; x < MAP_HEIGHT; x++) {
-        // Loop through the Doodle rows
+        // Loop through the map rows
         for (var y = 0; y < MAP_WIDTH; y++) {
-          var tile = new Tile(
-            game,
-            { x: x, y: y, z: 0 },
-            { type: 'grass' }
-          );
-          tile.index = game.tileIndex++;
-          game.tiles.push(tile);
+          // Add a grass tile
+          Tiles.addTile({ x: x, y: y, z: 0 }, { type: 'grass' });
         }
       }
     }
 
-    game.findTileByPosition = function(position) {
-      // The tile
-      var foundTile = null;
-
-      // Loop through the tiles
-      angular.forEach(game.tiles, function(tile) {
-        if (tile.position.x === position.x &&
-            tile.position.y === position.y &&
-            tile.position.z === position.z) {
-          foundTile = tile;
-        }
-      });
-
-      return foundTile;
-    }
-
-    game.addTile = function(position, options) {
-      console.log(arguments);
-      var tile = new Tile(game, position, options);
-
-      game.tiles.push(tile);
-
-      return tile;
-    }
-
+    // Create the map
     game.createMap();
-
-    console.log(game.findTileByPosition({
-      x: 1,
-      y: 2,
-      z: 0
-    }));
   })
 ;
 
@@ -77,36 +44,164 @@ module.run(['$templateCache', function($templateCache) {
     '     style="z-index: {{ tile.data.translated.z }}; left: {{ tile.data.translated.y }}px; top: {{ tile.data.translated.x }}px;"\n' +
     '     class="tile {{ tile.data.type }}">\n' +
     '  <div ng-click="tile.onClick($event)"\n' +
-    '       ng-mouseover="tile.onMouseover($event)"\n' +
+    '       ng-mouseenter="tile.onMouseenter($event)"\n' +
     '       ng-mouseout="tile.onMouseout($event)"\n' +
     '       class="face top"></div>\n' +
     '  <div ng-click="tile.onClick($event)"\n' +
-    '       ng-mouseover="tile.onMouseover($event)"\n' +
+    '       ng-mouseenter="tile.onMouseenter($event)"\n' +
     '       ng-mouseout="tile.onMouseout($event)"\n' +
     '       class="face left thin_face"></div>\n' +
     '  <div ng-click="tile.onClick($event)"\n' +
-    '       ng-mouseover="tile.onMouseover($event)"\n' +
+    '       ng-mouseenter="tile.onMouseenter($event)"\n' +
     '       ng-mouseout="tile.onMouseout($event)"\n' +
     '       class="face right thin_face"></div>\n' +
     '</div>');
 }]);
 })();
 
+angular.module("game.services.tiles", [])
+  .service("Tiles", function(Tile) {
+    var tiles = this;
+
+    tiles.list = [];
+
+    tiles.guide = null;
+
+    tiles.addTile = function(position, options) {
+      // Check if we already have a tile at this location
+      var tile = tiles.findTileByPosition(position);
+
+      // Delete any current tiles at this position
+      if (tile) tiles.remove(tile);
+
+      // Create a new tile
+      tile = new Tile(position, options);
+
+      // Set the tile index
+      tile.index = tiles.list.length;
+
+      // Add the tile
+      tiles.list.push(tile);
+
+      // Return the tile we added
+      return tile;
+    }
+
+    tiles.findTileByPosition = function(position) {
+      // The tile
+      var foundTile = null;
+
+      // Loop through the tiles
+      angular.forEach(tiles.list, function(tile) {
+        if (tile.position.x === position.x &&
+            tile.position.y === position.y &&
+            tile.position.z === position.z) {
+          foundTile = tile;
+        }
+      });
+
+      return foundTile;
+    }
+
+    tiles.remove = function(tile) {
+      tiles.list.splice(tile.index, 1);
+      tile = null;
+
+      tiles.seed();
+    }
+
+    tiles.seed = function() {
+      // Index set on tiles
+      var index = 0;
+
+      // Loop through the tiles and set the index
+      angular.forEach(tiles.list, function(tile) {
+        tile.index = index++;
+      })
+    }
+  })
+angular.module('game.factories.tile', [])
+  .constant("TILE_WIDTH", 45)
+  .constant("TILE_HEIGHT", 26)
+  .constant("Z_LEVEL_ADJUSTMENT", 2000)
+  .constant("Z_ROW_ADJUSTMENT", 100)
+  .constant("Z_OFFSET", 22)
+  .factory("Tile", function(TILE_WIDTH, TILE_HEIGHT, Z_LEVEL_ADJUSTMENT, Z_ROW_ADJUSTMENT, Z_OFFSET) {
+    return function Tile(position, options) {
+      var tile = this;
+
+      tile.translated = { x: 0, y: 0, z: 0 };
+      tile.position = { x: 0, y: 0, z: 0 };
+
+      tile.type = options.type;
+
+      //// Update the tile's position
+      tile.setPosition = function(position) {
+        // Update the position if we got new coordinates
+        tile.position = {
+          x: position.x || tile.position.x,
+          y: position.y || tile.position.y,
+          z: position.z || tile.position.z
+        }
+
+        // Update the DOM translated position (What the fuck was I thinking?)
+        tile.translated = {
+          // Left value
+          x: TILE_HEIGHT * position.x * -1 + (position.y * TILE_HEIGHT) - (position.z * Z_OFFSET),
+          // Top value
+          y: TILE_WIDTH * position.x + (position.y * TILE_WIDTH),
+          // Each row on top of the last, each tile in a row below the last
+          z: (position.z * Z_LEVEL_ADJUSTMENT) + (position.y * Z_ROW_ADJUSTMENT) - position.x
+        }
+      }
+
+      tile.setPosition(position);
+    }
+  })
 angular.module('game.directives.tile', [])
-  .controller("TileCtrl", function() {
+  .controller("TileCtrl", function(Tiles) {
     var tile = this;
 
+    tile.setupTile = function() {
+      // Check if this is a ghost block (you click through it)
+      if (tile.data.type === "guide") {
+        // Ignore clicks
+        tile.element.css("pointer-events", "none");
+      }
+    }
+
     tile.onClick = function($event) {
+      // Remove any guides
+      if (Tiles.guide) {
+        Tiles.remove(Tiles.guide);
+        Tiles.guide = null;
+        console.log("removed it", Tiles.guide);
+      }
+
       // Check if shift is being held
       if ($event.shiftKey) {
-        tile.data.remove();
-
-        // Remove any guides
-        //$(".guide").remove();
+        Tiles.remove(tile.data);
 
         // Exit
         return false;
       }
+
+      // Grab the face we want to monitor
+      var face = angular.element($event.toElement);
+
+      // Adjust the position based on the face we are over
+      var position = {
+        x: face.hasClass("left") ? tile.data.position.x - 1 :
+                                   tile.data.position.x,
+        y: face.hasClass("right") ? tile.data.position.y + 1 :
+                                    tile.data.position.y,
+        z: face.hasClass("top") ? tile.data.position.z + 1 :
+                                  tile.data.position.z
+      }
+
+      Tiles.addTile(position, { type: "grass" });
+
+
 
       // Get the tile id
       /*var id = element.id;
@@ -132,26 +227,30 @@ angular.module('game.directives.tile', [])
       $("#map").append(Doodle.createTile(col, row, level, type));*/
     }
 
-    tile.onMouseover = function() {
+    tile.onMouseenter = function($event) {
+      // If this is a guide tile, we don't care
+      if (tile.data.type === "guide") return false;
+
+      // Grab the face we want to monitor
+      var face = angular.element($event.toElement);
+
       // Adjust the position based on the face we are over
       var position = {
-        x: tile.element.hasClass("left") ? tile.data.position.x - 1 :
-                                           tile.data.position.x,
-        y: tile.element.hasClass("right") ? tile.data.position.y + 1 :
-                                           tile.data.position.y,
-        z: tile.element.hasClass("top") ? tile.data.position.z + 1 :
-                                          tile.data.position.z
+        x: face.hasClass("left") ? tile.data.position.x - 1 :
+                                   tile.data.position.x,
+        y: face.hasClass("right") ? tile.data.position.y + 1 :
+                                    tile.data.position.y,
+        z: face.hasClass("top") ? tile.data.position.z + 1 :
+                                  tile.data.position.z
       }
 
       // Create a new tile
-      tile.data.game.guide = tile.data.game.addTile(
-        position,
-        { type: "guide" }
-      );
+      Tiles.guide = Tiles.addTile(position, { type: "guide" })
     }
 
     tile.onMouseout = function() {
-      tile.data.game.guide
+      console.log("removing?", Tiles.guide);
+      if (Tiles.guide) Tiles.remove(Tiles.guide);
     }
 
     // Set the onClick function
@@ -175,6 +274,9 @@ angular.module('game.directives.tile', [])
       link: function(scope, element, attrs, tile) {
         tile.element = element;
         tile.data = scope.ngModel;
+
+        // Setup any special behavior
+        tile.setupTile();
       }
     }
   })
@@ -570,51 +672,3 @@ $(document).ready(function () {
     Doodle.createDoodleTable($("#base_type").val());
   });
 });*/
-angular.module('game.factories.tile', [])
-  .constant("TILE_WIDTH", 45)
-  .constant("TILE_HEIGHT", 26)
-  .constant("Z_LEVEL_ADJUSTMENT", 2000)
-  .constant("Z_ROW_ADJUSTMENT", 100)
-  .constant("Z_OFFSET", 22)
-  .factory("Tile", function(TILE_WIDTH, TILE_HEIGHT, Z_LEVEL_ADJUSTMENT, Z_ROW_ADJUSTMENT, Z_OFFSET) {
-    return function Tile(game, position, options) {
-      var tile = this;
-
-      tile.game = game;
-
-      tile.translated = { x: 0, y: 0, z: 0 };
-      tile.position = { x: 0, y: 0, z: 0 };
-
-      tile.type = options.type;
-
-      //// Update the tile's position
-      tile.setPosition = function(position) {
-        // Update the position if we got new coordinates
-        tile.position = {
-          x: position.x || tile.position.x,
-          y: position.y || tile.position.y,
-          z: position.z || tile.position.z
-        }
-
-        // Update the DOM translated position (What the fuck was I thinking?)
-        tile.translated = {
-          // Left value
-          x: TILE_HEIGHT * position.x * -1 + (position.y * TILE_HEIGHT) - (position.z * Z_OFFSET),
-          // Top value
-          y: TILE_WIDTH * position.x + (position.y * TILE_WIDTH),
-          // Each row on top of the last, each tile in a row below the last
-          z: (position.z * Z_LEVEL_ADJUSTMENT) + (position.y * Z_ROW_ADJUSTMENT) - position.x
-        }
-      }
-
-      tile.remove = function() {
-
-        tile.type = "air";
-        console.log(tile.type);
-      }
-
-      tile.setPosition(position);
-
-      //return tile;
-    }
-  })
